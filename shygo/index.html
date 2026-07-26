@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shygo - Спрей-бутылка</title>
+    <!-- Google Fonts: Inter ve Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome ikonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS Kütüphanesi -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("yNp4OGCv7UUvMMZl4");
+        })();
+    </script>
+</head>
+<body onload="initApp()">
+
+    <!-- Üst Turuncu Duyuru Bandı -->
+    <div class="top-announcement-bar">
+        <div class="announcement-track">
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE SHIPPING" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE SHIPPING" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА</span>
+        </div>
+    </div>
+
+    <!-- Üst Bar -->
+    <header class="navbar">
+        <div class="logo">SHYGO</div>
+        <nav class="nav-links">
+            <a href="#" class="active" data-ru="Главная" data-en="Home" data-kz="Басты бет">Главная</a>
+            <a href="#products" data-ru="Товары" data-en="Products" data-kz="Өнімдер">Товары</a>
+            <a href="#footer" data-ru="Контакты" data-en="Contact" data-kz="Байланыс">Контакты</a>
+        </nav>
+        <div class="nav-right">
+            <!-- Dil Seçici (RUS, ENG, KAZ) -->
+            <div class="lang-selector">
+                <span onclick="setLanguage('ru')" id="lang-ru" class="active-lang">RUS</span>
+                <span onclick="setLanguage('en')" id="lang-en">ENG</span>
+                <span onclick="setLanguage('kz')" id="lang-kz">KAZ</span>
+            </div>
+            <!-- Sepet İkonu -->
+            <div class="cart-icon-container" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping icon"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sağdan Açılır Sepet ve Form Paneli (Drawer) -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3 id="drawer-title" data-ru="Ваша корзина" data-en="Your Cart" data-kz="Сіздің себетіңіз">Ваша корзина</h3>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+        </div>
+
+        <!-- Aşama 1: Ürün Listesi -->
+        <div class="cart-body" id="cartBody">
+            <div id="cartItemsContainer"></div>
+        </div>
+
+        <!-- Aşama 2: Müşteri Bilgi Formu -->
+        <div class="cart-body" id="checkoutForm" style="display: none;">
+            <form id="orderForm" onsubmit="processKaspiPayment(event)">
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Имя и Фамилия" data-en="Full Name" data-kz="Аты-жөні">Имя и Фамилия</label>
+                    <input type="text" id="custName" required placeholder="Арда Гуль" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Электронная почта" data-en="Email Address" data-kz="Электрондық пошта">Электронная почта</label>
+                    <input type="email" id="custEmail" required placeholder="example@gmail.com" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Телефон (Kaspi için)" data-en="Phone Number" data-kz="Телефон нөмірі">Телефон (Kaspi için)</label>
+                    <input type="tel" id="custPhone" required placeholder="+7 (777) 000-00-00" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                </div>
+
+                <div style="margin-top: 15px; margin-bottom: 8px; font-size: 14px; font-weight: 700; color: #333;" data-ru="Адрес доставки" data-en="Delivery Address" data-kz="Жеткізу мекенжайы">Адрес доставки</div>
+                
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <input type="text" id="custCity" required placeholder="Город (например: Алматы)" data-ru-placeholder="Город (например: Алматы)" data-en-placeholder="City (e.g., Almaty)" data-kz-placeholder="Қала (мысалы: Алматы)" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <input type="text" id="custStreet" required placeholder="Улица / Проспект" data-ru-placeholder="Улица / Проспект" data-en-placeholder="Street / Avenue" data-kz-placeholder="Көше / Даңғыл" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <input type="text" id="custBuilding" required placeholder="Дом №" data-ru-placeholder="Дом №" data-en-placeholder="Building No" data-kz-placeholder="Үй нөмірі" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <input type="text" id="custApartment" required placeholder="Кв. / Офис" data-ru-placeholder="Кв. / Офис" data-en-placeholder="Apt. / Office" data-kz-placeholder="Пәтер / Кеңсе" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    </div>
+                </div>
+
+                <button type="submit" class="kaspi-checkout-btn">
+                    <span id="checkoutPayBtnText" data-ru="Продолжить к оплате" data-en="Continue to Payment" data-kz="Төлемге жалғастыру">Продолжить к оплате</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Aşama 3: Yan Panelde Net Tutar ve Ödeme Ekranı -->
+        <div class="cart-body" id="paymentStep" style="display: none; text-align: center; padding: 20px 10px;">
+            <h4 style="font-size: 16px; font-weight: 700; color: #222; margin-bottom: 8px;" data-ru="Оплата заказа" data-en="Order Payment" data-kz="Тапсырысты төлеу">Оплата заказа</h4>
+            <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.4;" data-ru="Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:" data-en="Order amount is fixed. Click the button below to pay via Kaspi Pay:" data-kz="Тапсырыс сомасы бекітілді. Kaspi Pay арқылы төлеу үшін төменгі түймені басыңыз:">Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:</p>
+            
+            <div style="border: 2px dashed #ff5722; border-radius: 12px; padding: 15px; margin-bottom: 20px; background: #fffaf8;">
+                <span style="font-size: 13px; color: #555; display: block; margin-bottom: 4px;" data-ru="К оплате:" data-en="Amount to pay:" data-kz="Төленетін сома:">К оплате:</span>
+                <span id="drawerFinalPaymentAmount" style="font-size: 26px; font-weight: 800; color: #ff5722;">3.790 ₸</span>
+            </div>
+
+            <button onclick="triggerPaymentPopup()" class="kaspi-checkout-btn" style="margin-bottom: 15px;">
+                <span data-ru="Оплатить через Kaspi Pay" data-en="Pay with Kaspi Pay" data-kz="Kaspi Pay арқылы төлеу">Оплатить через Kaspi Pay</span>
+            </button>
+
+            <a href="#" onclick="backToCartAndClear(event)" style="font-size: 13px; color: #666; text-decoration: underline; display: inline-block;" data-ru="← Завершить и очистить корзину" data-en="← Finish and clear cart" data-kz="← Аяқтау және себетті тазарту">← Завершить и очистить корзину</a>
+        </div>
+
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-total">
+                <span data-ru="Итого:" data-en="Total:" data-kz="Барлығы:">Итого:</span>
+                <span class="total-price" id="cartTotalPrice">3.790 ₸</span>
+            </div>
+            <button class="kaspi-checkout-btn" onclick="showCheckoutForm()">
+                <span data-ru="Оформить заказ" data-en="Checkout" data-kz="Тапсырыс беру">Оформить заказ</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Şık Animasyonlu Pop-up -->
+    <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div style="background: #fff; width: 90%; max-width: 400px; padding: 30px 25px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.25); transform: scale(0.8); opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);" id="modalContentBox">
+            <div style="width: 65px; height: 65px; background: #fff3ed; color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 15px; box-shadow: 0 8px 20px rgba(255,87,34,0.2);">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 id="modalTitle" style="font-size: 22px; font-weight: 800; color: #222; margin-bottom: 10px;" data-ru="Готовы к оплате?" data-en="Ready to pay?" data-kz="Төлемге дайынсыз ба?">Готовы к оплате?</h3>
+            <p id="modalDesc" style="font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px;"></p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closePaymentModal()" style="flex: 1; padding: 12px; border: 1px solid #ddd; background: #f9f9f9; color: #333; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s;" data-ru="Отмена" data-en="Cancel" data-kz="Болдырмау">Отмена</button>
+                <button onclick="redirectToKaspi()" style="flex: 1; padding: 12px; border: none; background: #ff5722; color: #fff; font-weight: 700; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(255,87,34,0.3); transition: transform 0.2s;" data-ru="Перейти к Kaspi" data-en="Go to Kaspi" data-kz="Kaspi-ге өту">Перейти к Kaspi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Bölümü (Ana Sayfa Başlangıcı) -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="badge" data-ru="НОВЫЙ СЕЗОН" data-en="NEW SEASON" data-kz="ЖАҢА МАУСЫМ">НОВЫЙ СЕЗОН</span>
+            <h1>SHYGO</h1>
+            <p data-ru="Специальная технология спрея для мгновенной свежести в жаркие дни." data-en="Special spray technology providing instant freshness on hot days." data-kz="Ыстық күндерде лезде сергектік беретін арнайы бүріккіш технологиясы.">Специальная технология спрея для мгновенной свежести в жаркие дни.</p>
+            <a href="#products" class="cta-btn">
+                <span data-ru="Купить сейчас" data-en="Shop Now" data-kz="Қазір сатып алу">Купить сейчас</span> 
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Ürünler Bölümü -->
+    <section id="products" class="products-section">
+        <h2 class="section-title" data-ru="Наши товары" data-en="Our Products" data-kz="Біздің өнімдер">Наши товары</h2>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="badge-discount" data-ru="СПЕЦСЕРИЯ" data-en="SPECIAL" data-kz="АРНАЙЫ СЕРИЯ">СПЕЦСЕРИЯ</div>
+                <div class="img-container">
+                    <img src="gercek-foto.jpg" alt="Shygo Fıs Fıs Suluğu" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 data-ru="Спортивная бутылка Shygo Spray" data-en="Shygo Spray Sport Bottle" data-kz="Shygo Бүріккіш Спорттық Бөтелкесі">Спортивная бутылка Shygo Spray</h3>
+                    <p class="product-desc" data-ru="Матовая черная крышка, оранжевый прозрачный корпус и механизм спрея." data-en="Matte black lid, transparent orange body and spray mechanism." data-kz="Матты қара қақпақ, ашық сары мөлдір корпус және бүріккіш механизмі.">Матовая черная крышка, оранжевый прозрачный корпус и механизм спрея.</p>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="old-price">4.290 ₸</span>
+                            <span class="price">3.790 ₸</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="sepeteUrunEkle()" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>SHYGO</h3>
+                <p data-ru="Подними производительность на вершину, оставайся свежим." data-en="Peak your performance, stay cool anytime." data-kz="Өнімділігіңізді шыңға көтеріңіз, әрқашан сергектік сақтаңыз.">Подними производительность на вершину, оставайся свежим.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-ru="Быстрые ссылки" data-en="Quick Links" data-kz="Жылдам сілтемелер">Быстрые ссылки</h4>
+                <a href="#home" data-ru="Главная" data-en="Home" data-kz="Басты бет">Главная</a>
+                <a href="#products" data-ru="Товары" data-en="Products" data-kz="Өнімдер">Товары</a>
+                <a href="#footer" data-ru="Контакты" data-en="Contact" data-kz="Байланыс">Контакты</a>
+            </div>
+            <div class="footer-col">
+                <h4 data-ru="Контакты" data-en="Contact" data-kz="Байланыс">Контакты</h4>
+                <p><i class="fa-solid fa-envelope"></i> msoldiermedia@gmail.com</p>
+                <p><i class="fa-brands fa-instagram"></i> @shygostore</p>
+                <p><i class="fa-brands fa-tiktok"></i> @shygostore</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SHYGO. <span data-ru="Все права защищены." data-en="All rights reserved." data-kz="Барлық құқықтар қорғалған.">Все права защищены.</span></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Fonksiyonları -->
+    <script>
+        let currentLang = 'ru';
+        let sepet = [];
+        let hesaplananToplamFiyat = 3790;
+
+        const oturumSepetAnahtari = 'shygo_sepet_' + window.location.hostname;
+
+        function initApp() {
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+            window.scrollTo(0, 0);
+
+            const savedCart = sessionStorage.getItem(oturumSepetAnahtari);
+            if (savedCart) {
+                sepet = JSON.parse(savedCart);
+            }
+            sepetiGuncelleUI();
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-selector span').forEach(el => el.classList.remove('active-lang'));
+            const activeLangEl = document.getElementById('lang-' + lang);
+            if (activeLangEl) activeLangEl.classList.add('active-lang');
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                el.innerText = el.getAttribute('data-' + lang);
+            });
+
+            const cityInput = document.getElementById('custCity');
+            const streetInput = document.getElementById('custStreet');
+            const buildingInput = document.getElementById('custBuilding');
+            const aptInput = document.getElementById('custApartment');
+
+            if (cityInput) cityInput.placeholder = cityInput.getAttribute('data-' + lang + '-placeholder');
+            if (streetInput) streetInput.placeholder = streetInput.getAttribute('data-' + lang + '-placeholder');
+            if (buildingInput) buildingInput.placeholder = buildingInput.getAttribute('data-' + lang + '-placeholder');
+            if (aptInput) aptInput.placeholder = aptInput.getAttribute('data-' + lang + '-placeholder');
+
+            updateValidationMessages();
+            sepetiGuncelleUI();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        function sepeteUrunEkle() {
+            if (sepet.length === 0) {
+                const urun = {
+                    id: 1,
+                    isim: "Спортивная бутылка Shygo",
+                    fiyatSayi: 3790,
+                    fiyatStr: "3.790 ₸",
+                    img: "gercek-foto.jpg",
+                    adet: 1
+                };
+                sepet.push(urun);
+            } else {
+                sepet[0].adet += 1;
+            }
+            sessionStorage.setItem(oturumSepetAnahtari, JSON.stringify(sepet));
+            sepetiGuncelleUI();
+            toggleCart();
+        }
+
+        function miktarDegistir(index, miktar) {
+            sepet[index].adet += miktar;
+            if (sepet[index].adet <= 0) {
+                sepet.splice(index, 1);
+            }
+            sessionStorage.setItem(oturumSepetAnahtari, JSON.stringify(sepet));
+            sepetiGuncelleUI();
+        }
+
+        function sepettenCikar(index) {
+            sepet.splice(index, 1);
+            sessionStorage.setItem(oturumSepetAnahtari, JSON.stringify(sepet));
+            sepetiGuncelleUI();
+        }
+
+        function sepetiGuncelleUI() {
+            const cartCountEl = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            let toplamAdet = 0;
+            let toplamFiyat = 0;
+
+            sepet.forEach(item => {
+                toplamAdet += item.adet;
+                toplamFiyat += item.fiyatSayi * item.adet;
+            });
+
+            hesaplananToplamFiyat = toplamFiyat > 0 ? toplamFiyat : 3790;
+
+            if (cartCountEl) cartCountEl.innerText = toplamAdet;
+
+            if (cartItemsContainer) {
+                if (sepet.length === 0) {
+                    let bosMesaj = "Ваша корзина пуста";
+                    if (currentLang === 'en') bosMesaj = "Your cart is empty";
+                    if (currentLang === 'kz') bosMesaj = "Сіздің себетіңіз бос";
+                    cartItemsContainer.innerHTML = `<p style="text-align: center; color: #777; padding: 20px;">${bosMesaj}</p>`;
+                } else {
+                    let html = '';
+                    sepet.forEach((item, index) => {
+                        let urunToplam = item.fiyatSayi * item.adet;
+                        html += `
+                            <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 15px; position: relative; border-bottom: 1px solid #eee; padding-bottom: 12px;">
+                                <img src="${item.img}" alt="Shygo" class="cart-item-img" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 12px;">
+                                <div class="cart-item-details" style="flex-grow: 1;">
+                                    <h4 style="font-size: 14px; margin-bottom: 4px;">${item.isim}</h4>
+                                    <span class="cart-item-price" style="font-weight: 600; color: #ff5722; display: block; margin-bottom: 6px;">${urunToplam.toLocaleString()} ₸</span>
+                                    
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <button onclick="miktarDegistir(${index}, -1)" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
+                                        <span style="font-size: 14px; font-weight: 600; min-width: 20px; text-align: center;">${item.adet}</span>
+                                        <button onclick="miktarDegistir(${index}, 1)" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-trash" onclick="sepettenCikar(${index})" style="cursor: pointer; color: #ff5722; padding: 10px;"></i>
+                            </div>
+                        `;
+                    });
+                    cartItemsContainer.innerHTML = html;
+                }
+            }
+
+            if (totalPriceEl) totalPriceEl.innerText = (toplamFiyat > 0 ? hesaplananToplamFiyat.toLocaleString() : "0") + " ₸";
+            const drawerFinalEl = document.getElementById('drawerFinalPaymentAmount');
+            if (drawerFinalEl) drawerFinalEl.innerText = (toplamFiyat > 0 ? hesaplananToplamFiyat.toLocaleString() : "0") + " ₸";
+        }
+
+        function showCheckoutForm() {
+            if (sepet.length === 0) {
+                let uyari = "Ваша корзина пуста!";
+                if (currentLang === 'en') uyari = "Your cart is empty!";
+                if (currentLang === 'kz') uyari = "Себетіңіз бос!";
+                alert(uyari);
+                return;
+            }
+            document.getElementById('cartBody').style.display = 'none';
+            document.getElementById('cartFooter').style.display = 'none';
+            document.getElementById('checkoutForm').style.display = 'block';
+            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Checkout' : (currentLang === 'kz' ? 'Тапсырысты рәсімдеу' : 'Оформление заказа');
+            
+            updateValidationMessages();
+        }
+
+        function updateValidationMessages() {
+            const inputs = [
+                document.getElementById('custName'),
+                document.getElementById('custEmail'),
+                document.getElementById('custPhone'),
+                document.getElementById('custCity'),
+                document.getElementById('custStreet'),
+                document.getElementById('custBuilding'),
+                document.getElementById('custApartment')
+            ];
+
+            let msg = "Заполните это поле";
+            if (currentLang === 'en') msg = "Please fill out this field";
+            if (currentLang === 'kz') msg = "Бұл өрісті толтырыңыз";
+
+            inputs.forEach(input => {
+                if (input) {
+                    input.oninput = function() {
+                        this.setCustomValidity('');
+                    };
+                    input.oninvalid = function(e) {
+                        e.target.setCustomValidity(msg);
+                    };
+                }
+            });
+        }
+
+        function processKaspiPayment(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const city = document.getElementById('custCity').value.trim();
+            const street = document.getElementById('custStreet').value.trim();
+            const building = document.getElementById('custBuilding').value.trim();
+            const apt = document.getElementById('custApartment').value.trim();
+
+            let toplamFiyat = 0;
+            let urunDetaylari = "";
+            sepet.forEach(item => {
+                toplamFiyat += item.fiyatSayi * item.adet;
+                urunDetaylari += `${item.isim} (Adet: ${item.adet}), `;
+            });
+
+            hesaplananToplamFiyat = toplamFiyat > 0 ? toplamFiyat : 3790;
+            const fullAddress = `${city}, ул. ${street}, д. ${building}, кв. ${apt}`;
+            const orderId = "SHYGO-" + Math.floor(100000 + Math.random() * 900000);
+
+            const templateParams = {
+                order_id: orderId,
+                from_name: name,
+                email: email,
+                phone: phone,
+                address: fullAddress,
+                products: urunDetaylari,
+                total: hesaplananToplamFiyat.toLocaleString() + " ₸"
+            };
+
+            emailjs.send('service_6xt8u4j', 'template_kovmr99', templateParams)
+                .then(function(response) {
+                    console.log('E-posta başarıyla gönderildi!', response.status, response.text);
+                }, function(error) {
+                    console.log('E-posta gönderilemedi...', error);
+                });
+
+            document.getElementById('checkoutForm').style.display = 'none';
+            document.getElementById('paymentStep').style.display = 'block';
+            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Payment' : (currentLang === 'kz' ? 'Төлем' : 'Оплата');
+            
+            const drawerFinalEl = document.getElementById('drawerFinalPaymentAmount');
+            if (drawerFinalEl) drawerFinalEl.innerText = hesaplananToplamFiyat.toLocaleString() + " ₸";
+        }
+
+        function triggerPaymentPopup() {
+            let modalDescText = `Пожалуйста, на странице Kaspi введите точную сумму заказа: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+            
+            if (currentLang === 'en') {
+                modalDescText = `Please enter the exact order amount on the Kaspi page: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+            } else if (currentLang === 'kz') {
+                modalDescText = `Kaspi парақшасында тапсырыстың дәл сомасын енгізіңіз: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+            }
+            
+            document.getElementById('modalDesc').innerHTML = modalDescText;
+
+            sepet = [];
+            sessionStorage.removeItem(oturumSepetAnahtari);
+            sepetiGuncelleUI();
+            document.getElementById('orderForm').reset();
+            document.getElementById('paymentStep').style.display = 'none';
+            document.getElementById('cartBody').style.display = 'block';
+            document.getElementById('cartFooter').style.display = 'block';
+            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Your Cart' : (currentLang === 'kz' ? 'Сіздің себетіңіз' : 'Ваша корзина');
+            toggleCart();
+
+            const modal = document.getElementById('paymentModal');
+            const modalBox = document.getElementById('modalContentBox');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modalBox.style.transform = 'scale(1)';
+                modalBox.style.opacity = '1';
+            }, 10);
+        }
+
+        function closePaymentModal() {
+            const modalBox = document.getElementById('modalContentBox');
+            modalBox.style.transform = 'scale(0.8)';
+            modalBox.style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('paymentModal').style.display = 'none';
+            }, 200);
+        }
+
+        function backToCartAndClear(event) {
+            event.preventDefault();
+            sepet = [];
+            sessionStorage.removeItem(oturumSepetAnahtari);
+            sepetiGuncelleUI();
+            document.getElementById('orderForm').reset();
+            document.getElementById('paymentStep').style.display = 'none';
+            document.getElementById('cartBody').style.display = 'block';
+            document.getElementById('cartFooter').style.display = 'block';
+            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Your Cart' : (currentLang === 'kz' ? 'Сіздің себетіңіз' : 'Ваша корзина');
+            toggleCart();
+        }
+
+        function redirectToKaspi() {
+            window.location.href = "https://pay.kaspi.kz/pay/pwazx3ax";
+        }
+    </script>
+</body>
+</html>
