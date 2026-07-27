@@ -279,6 +279,12 @@ body {
     background-color: #d93820;
 }
 
+.kaspi-checkout-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 /* Hero (Banner) Bölümü */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('hero-bg.jpg');
