@@ -53,9 +53,12 @@
     <!-- Sağdan Açılır Sepet ve Form Paneli (Drawer) -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <h3 id="drawer-title" data-ru="Ваша корзина" data-en="Your Cart" data-kz="Сіздің себетіңіз">Ваша корзина</h3>
-            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()"></i>
+        <div class="cart-header" style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i id="backToCartIcon" class="fa-solid fa-arrow-left" onclick="backToCartFromCheckout()" style="display: none; cursor: pointer; font-size: 16px; color: #333;" title="Назад к корзине"></i>
+                <h3 id="drawer-title" data-ru="Ваша корзина" data-en="Your Cart" data-kz="Сіздің себетіңіз" style="margin: 0;">Ваша корзина</h3>
+            </div>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()" style="cursor: pointer; font-size: 18px;"></i>
         </div>
 
         <!-- Aşama 1: Ürün Listesi -->
@@ -299,7 +302,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Fonksiyonları -->
+    <!-- JavaScript Fonksiyonları ve Geri Dönüş Butonu Desteği -->
     <script>
         let currentLang = 'ru';
         let sepet = [];
@@ -616,13 +619,30 @@
             document.getElementById('cartBody').style.display = 'none';
             document.getElementById('cartFooter').style.display = 'none';
             document.getElementById('checkoutForm').style.display = 'block';
-            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Checkout' : (currentLang === 'kz' ? 'Тапсырысты рәсімдеу' : 'Оформление заказа');
+            document.getElementById('backToCartIcon').style.display = 'inline-block';
+            
+            let titleText = "Оформление заказа";
+            if (currentLang === 'en') titleText = "Checkout";
+            if (currentLang === 'kz') titleText = "Тапсырысты рәсімдеу";
+            document.getElementById('drawer-title').innerText = titleText;
             
             if(!document.getElementById('commonCity').value) {
                 document.getElementById('deliveryMethodsContainer').style.display = 'none';
                 document.getElementById('noDeliveryMsg').style.display = 'none';
                 document.getElementById('mainCheckoutBtn').disabled = false;
             }
+        }
+
+        function backToCartFromCheckout() {
+            document.getElementById('checkoutForm').style.display = 'none';
+            document.getElementById('cartBody').style.display = 'block';
+            document.getElementById('cartFooter').style.display = 'block';
+            document.getElementById('backToCartIcon').style.display = 'none';
+            
+            let titleText = "Ваша корзина";
+            if (currentLang === 'en') titleText = "Your Cart";
+            if (currentLang === 'kz') titleText = "Сіздің себетіңіз";
+            document.getElementById('drawer-title').innerText = titleText;
         }
 
         function processKaspiPayment(event) {
@@ -683,7 +703,11 @@
 
             document.getElementById('checkoutForm').style.display = 'none';
             document.getElementById('paymentStep').style.display = 'block';
-            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Payment' : (currentLang === 'kz' ? 'Төлем' : 'Оплата');
+            
+            let payTitle = "Оплата заказа";
+            if (currentLang === 'en') payTitle = "Order Payment";
+            if (currentLang === 'kz') payTitle = "Тапсырысты төлеу";
+            document.getElementById('drawer-title').innerText = payTitle;
             
             const drawerFinalEl = document.getElementById('drawerFinalPaymentAmount');
             if (drawerFinalEl) drawerFinalEl.innerText = hesaplananToplamFiyat.toLocaleString() + " ₸";
@@ -707,7 +731,12 @@
             document.getElementById('paymentStep').style.display = 'none';
             document.getElementById('cartBody').style.display = 'block';
             document.getElementById('cartFooter').style.display = 'block';
-            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Your Cart' : (currentLang === 'kz' ? 'Сіздің себетіңіз' : 'Ваша корзина');
+            
+            let cartTitle = "Ваша корзина";
+            if (currentLang === 'en') cartTitle = "Your Cart";
+            if (currentLang === 'kz') cartTitle = "Сіздің себетіңіз";
+            document.getElementById('drawer-title').innerText = cartTitle;
+            document.getElementById('backToCartIcon').style.display = 'none';
             toggleCart();
 
             const modal = document.getElementById('paymentModal');
@@ -733,11 +762,16 @@
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
             sepetiGuncelleUI();
-            document.getElementById('orderForm').reset();
+            document.getElementById('orderForm'].reset();
             document.getElementById('paymentStep').style.display = 'none';
             document.getElementById('cartBody').style.display = 'block';
             document.getElementById('cartFooter').style.display = 'block';
-            document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Your Cart' : (currentLang === 'kz' ? 'Сіздің себетіңіз' : 'Ваша корзина');
+            
+            let cartTitle = "Ваша корзина";
+            if (currentLang === 'en') cartTitle = "Your Cart";
+            if (currentLang === 'kz') cartTitle = "Сіздің себетіңіз";
+            document.getElementById('drawer-title').innerText = cartTitle;
+            document.getElementById('backToCartIcon').style.display = 'none';
             toggleCart();
         }
 
