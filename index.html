@@ -22,8 +22,8 @@
     <!-- Üst Turuncu Duyuru Bandı -->
     <div class="top-announcement-bar">
         <div class="announcement-track">
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE SHIPPING" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА</span>
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE SHIPPING" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 10% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 10% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 10% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
             <a href="#footer" data-ru="Контакты" data-en="Contact" data-kz="Байланыс">Контакты</a>
         </nav>
         <div class="nav-right">
-            <!-- Dil Seçici (RUS, ENG, KAZ) -->
+            <!-- Dil Seçici -->
             <div class="lang-selector">
                 <span onclick="setLanguage('ru')" id="lang-ru" class="active-lang">RUS</span>
                 <span onclick="setLanguage('en')" id="lang-en">ENG</span>
@@ -68,48 +68,136 @@
             <form id="orderForm" onsubmit="processKaspiPayment(event)">
                 <div class="form-group" style="margin-bottom: 12px;">
                     <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Имя и Фамилия" data-en="Full Name" data-kz="Аты-жөні">Имя и Фамилия</label>
-                    <input type="text" id="custName" required placeholder="Арда Гуль" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    <input type="text" id="custName" required placeholder="Арда Гуль" data-ru-placeholder="Арда Гуль" data-en-placeholder="Full Name" data-kz-placeholder="Аты-жөні" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
                 </div>
                 <div class="form-group" style="margin-bottom: 12px;">
                     <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Электронная почта" data-en="Email Address" data-kz="Электрондық пошта">Электронная почта</label>
-                    <input type="email" id="custEmail" required placeholder="example@gmail.com" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    <input type="email" id="custEmail" required placeholder="example@gmail.com" data-ru-placeholder="example@gmail.com" data-en-placeholder="example@gmail.com" data-kz-placeholder="example@gmail.com" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
                 </div>
                 <div class="form-group" style="margin-bottom: 12px;">
-                    <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Телефон (Kaspi için)" data-en="Phone Number" data-kz="Телефон нөмірі">Телефон (Kaspi için)</label>
-                    <input type="tel" id="custPhone" required placeholder="+7 (777) 000-00-00" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    <label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;" data-ru="Телефон (Kaspi для оплаты)" data-en="Phone Number" data-kz="Телефон нөмірі">Телефон (Kaspi для оплаты)</label>
+                    <input type="tel" id="custPhone" required placeholder="+7 (777) 000-00-00" data-ru-placeholder="+7 (777) 000-00-00" data-en-placeholder="+7 (777) 000-00-00" data-kz-placeholder="+7 (777) 000-00-00" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
                 </div>
 
-                <div style="margin-top: 15px; margin-bottom: 8px; font-size: 14px; font-weight: 700; color: #333;" data-ru="Адрес доставки" data-en="Delivery Address" data-kz="Жеткізу мекенжайы">Адрес доставки</div>
-                
-                <div class="form-group" style="margin-bottom: 10px;">
-                    <input type="text" id="custCity" required placeholder="Город (например: Алматы)" data-ru-placeholder="Город (например: Алматы)" data-en-placeholder="City (e.g., Almaty)" data-kz-placeholder="Қала (мысалы: Алматы)" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                <!-- Ortak Şehir Seçimi -->
+                <div style="margin-top: 15px; margin-bottom: 8px; font-size: 14px; font-weight: 700; color: #333;" data-ru="Город доставки" data-en="Delivery City" data-kz="Жеткізу қаласы">Город доставки</div>
+                <select id="commonCity" required style="width:100%; padding:9px; border:1px solid #ff5500; border-radius:8px; font-size:14px; background: white; margin-bottom: 15px;" onchange="updateJanapostBranches()">
+                    <option value="" disabled selected data-ru="Выберите город..." data-en="Select city..." data-kz="Қаланы таңдаңыз...">Выберите город...</option>
+                    <option value="Актау">Актау</option>
+                    <option value="Актобе">Актобе</option>
+                    <option value="Алматы">Алматы</option>
+                    <option value="Алматы облысы">Алматы облысы</option>
+                    <option value="Астана">Астана</option>
+                    <option value="Атырау">Атырау</option>
+                    <option value="Жезказган">Жезказган</option>
+                    <option value="Караганда">Караганда</option>
+                    <option value="Кокшетау">Кокшетау</option>
+                    <option value="Костанай">Костанай</option>
+                    <option value="Кызылорда">Кызылорда</option>
+                    <option value="Павлодар">Павлодар</option>
+                    <option value="Петропавловск">Петропавловск</option>
+                    <option value="Рудный">Рудный</option>
+                    <option value="Семей">Семей</option>
+                    <option value="Талдыкорган">Талдыкорган</option>
+                    <option value="Тараз">Тараз</option>
+                    <option value="Туркестан">Туркестан</option>
+                    <option value="Уральск">Уральск</option>
+                    <option value="Усть-Каменогорск">Усть-Каменогорск</option>
+                    <option value="Шымкент">Шымкент</option>
+                    <option value="Экибастуз">Экибастуз</option>
+                </select>
+
+                <!-- Uyarı Mesajı Alanı -->
+                <div id="noDeliveryMsg" style="display: none; padding: 10px; background: #ffeeee; color: #cc0000; border-radius: 8px; font-size: 13px; font-weight: 600; text-align: center; margin-bottom: 15px;">
+                    <span data-ru="К сожалению, мы не осуществляем доставку в этот город." data-en="Sorry, we don't deliver to that city." data-kz="Кешіріңіз, біз бұл қалаға жеткізбейміз.">К сожалению, мы не осуществляем доставку в этот город.</span>
                 </div>
-                <div class="form-group" style="margin-bottom: 10px;">
-                    <input type="text" id="custStreet" required placeholder="Улица / Проспект" data-ru-placeholder="Улица / Проспект" data-en-placeholder="Street / Avenue" data-kz-placeholder="Көше / Даңғыл" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
-                </div>
-                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <div class="form-group" style="flex: 1;">
-                        <input type="text" id="custBuilding" required placeholder="Дом №" data-ru-placeholder="Дом №" data-en-placeholder="Building No" data-kz-placeholder="Үй нөмірі" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+
+                <!-- Kargo Seçim Alanı -->
+                <div id="deliveryMethodsContainer" style="display: none;">
+                    <div style="margin-bottom: 8px; font-size: 14px; font-weight: 700; color: #333;" data-ru="Способ доставки" data-en="Delivery Method" data-kz="Жеткізу тәсілі">Способ доставки</div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <label style="flex: 1; border: 1px solid #ff5500; padding: 10px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #fff3ed;" id="labelKazpost">
+                            <input type="radio" name="deliveryMethod" value="kazpost" onchange="toggleDeliveryMethod()" checked style="accent-color: #ff5500;">
+                            <span style="font-size: 13px; font-weight: 600; line-height: 1.2;" 
+                                  data-ru="Курьер<br><span style='font-size: 11px; color: #ff5722; font-weight: 700;'>(1.750 ₸)</span>" 
+                                  data-en="Courier<br><span style='font-size: 11px; color: #ff5722; font-weight: 700;'>(1.750 ₸)</span>" 
+                                  data-kz="Курьер<br><span style='font-size: 11px; color: #ff5722; font-weight: 700;'>(1.750 ₸)</span>">
+                                Курьер<br><span style="font-size: 11px; color: #ff5722; font-weight: 700;">(1.750 ₸)</span>
+                            </span>
+                        </label>
+                        <label style="flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px;" id="labelJanapost">
+                            <input type="radio" name="deliveryMethod" value="janapost" onchange="toggleDeliveryMethod()" style="accent-color: #ff5500;">
+                            <span style="font-size: 13px; font-weight: 600; line-height: 1.2;">Janapost<br><span style="font-size: 11px; color: #666;" data-ru="(Бесплатно)" data-en="(Free)" data-kz="(Тегін)">(Бесплатно)</span></span>
+                        </label>
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <input type="text" id="custApartment" required placeholder="Кв. / Офис" data-ru-placeholder="Кв. / Офис" data-en-placeholder="Apt. / Office" data-kz-placeholder="Пәтер / Кеңсе" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+
+                    <!-- Kurye Detaylı Adres Alanları -->
+                    <div id="kazpostFields">
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <input type="text" id="custStreet" required placeholder="Street / Avenue" data-ru-placeholder="Улица / Проспект" data-en-placeholder="Street / Avenue" data-kz-placeholder="Көше / Даңғыл" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <div class="form-group" style="flex: 1;">
+                                <input type="text" id="custBuilding" required placeholder="Building No" data-ru-placeholder="Дом №" data-en-placeholder="Building No" data-kz-placeholder="Үй нөмірі" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <input type="text" id="custEntrance" required placeholder="Entrance" data-ru-placeholder="Подъезд" data-en-placeholder="Entrance" data-kz-placeholder="Кіреберіс" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <div class="form-group" style="flex: 1;">
+                                <input type="text" id="custApartment" required placeholder="Apartment" data-ru-placeholder="Квартира" data-en-placeholder="Apartment" data-kz-placeholder="Пәтер" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <input type="text" id="custFloor" required placeholder="Floor" data-ru-placeholder="Этаж" data-en-placeholder="Floor" data-kz-placeholder="Қабат" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <div class="form-group" style="flex: 1;">
+                                <input type="text" id="custIntercom" required placeholder="Intercom" data-ru-placeholder="Домофон" data-en-placeholder="Intercom" data-kz-placeholder="Домофон" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <input type="tel" id="custCourierPhone" required placeholder="Contact phone for courier" data-ru-placeholder="Телефон для курьера" data-en-placeholder="Contact phone for courier" data-kz-placeholder="Курьер үшін телефон" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <textarea id="custDetails" placeholder="Details for courier (optional)" data-ru-placeholder="Детали для курьера (необязательно)" data-en-placeholder="Details for courier (optional)" data-kz-placeholder="Курьерге арналған мәліметтер (міндетті емес)" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px; resize:vertical; min-height:65px;"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Janapost Şube Seçim Alanı -->
+                    <div id="janapostFields" style="display: none; margin-bottom: 15px;">
+                        <div style="margin-bottom: 8px; font-size: 14px; font-weight: 700; color: #333;" data-ru="Филиал Janapost" data-en="Janapost Branch" data-kz="Janapost бөлімшесі">Филиал Janapost</div>
+                        <select id="janapostBranch" style="width:100%; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px; background: white;">
+                        </select>
+                        <p style="font-size: 11px; color: #666; margin-top: 5px;" data-ru="Заберите заказ сами и не платите за доставку!" data-en="Pick up your order yourself and enjoy free shipping!" data-kz="Тапсырысты өзіңіз алып, жеткізу ақысын төлемеңіз!">Заберите заказ сами и не платите за доставку!</p>
                     </div>
                 </div>
 
-                <button type="submit" class="kaspi-checkout-btn">
+                <button type="submit" class="kaspi-checkout-btn" id="mainCheckoutBtn">
                     <span id="checkoutPayBtnText" data-ru="Продолжить к оплате" data-en="Continue to Payment" data-kz="Төлемге жалғастыру">Продолжить к оплате</span>
                 </button>
             </form>
         </div>
 
-        <!-- Aşama 3: Yan Panelde Net Tutar ve Ödeme Ekranı -->
+        <!-- Aşama 3: Ödeme Ekranı -->
         <div class="cart-body" id="paymentStep" style="display: none; text-align: center; padding: 20px 10px;">
             <h4 style="font-size: 16px; font-weight: 700; color: #222; margin-bottom: 8px;" data-ru="Оплата заказа" data-en="Order Payment" data-kz="Тапсырысты төлеу">Оплата заказа</h4>
-            <p style="font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.4;" data-ru="Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:" data-en="Order amount is fixed. Click the button below to pay via Kaspi Pay:" data-kz="Тапсырыс сомасы бекітілді. Kaspi Pay арқылы төлеу үшін төменгі түймені басыңыз:">Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:</p>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px; line-height: 1.4;" data-ru="Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:" data-en="Order amount is fixed. Click the button below to pay via Kaspi Pay:" data-kz="Тапсырыс сомасы бекітілді. Kaspi Pay арқылы төлеу үшін төменгі түймені басыңыз:">Сумма заказа зафиксирована. Нажмите кнопку ниже для оплаты через Kaspi Pay:</p>
             
-            <div style="border: 2px dashed #ff5722; border-radius: 12px; padding: 15px; margin-bottom: 20px; background: #fffaf8;">
-                <span style="font-size: 13px; color: #555; display: block; margin-bottom: 4px;" data-ru="К оплате:" data-en="Amount to pay:" data-kz="Төленетін сома:">К оплате:</span>
+            <div style="border: 2px dashed #ff5722; border-radius: 12px; padding: 15px; margin-bottom: 15px; background: #fffaf8;">
+                <span style="font-size: 13px; color: #555; display: block; margin-bottom: 4px;" data-ru="К оплате (с учетом доставки):" data-en="Amount to pay (including shipping):" data-kz="Төленетін сома (жеткізуді қоса алғанда):">К оплате (с учетом доставки):</span>
                 <span id="drawerFinalPaymentAmount" style="font-size: 26px; font-weight: 800; color: #ff5722;">3.790 ₸</span>
+            </div>
+
+            <!-- Çok Dilli Bildirim Kutusu -->
+            <div style="background: #f0f7ff; border: 1px solid #b6d4fe; color: #084298; padding: 10px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 20px; text-align: center; font-weight: 500;">
+                <i class="fa-solid fa-circle-info" style="margin-right: 5px;"></i>
+                <span data-ru="Подтверждение заказа и информация о доставке будут отправлены по электронной почте в течение 2-3 часов после оплаты." 
+                      data-en="Order confirmation and shipping updates will be sent via email within 2-3 hours after payment." 
+                      data-kz="Тапсырысты растау және жеткізу туралы ақпарат төлем жасалғаннан кейін 2-3 сағат ішінде электрондық поштаға жіберіледі.">
+                    Order confirmation and shipping updates will be sent via email within 2-3 hours after payment.
+                </span>
             </div>
 
             <button onclick="triggerPaymentPopup()" class="kaspi-checkout-btn" style="margin-bottom: 15px;">
@@ -120,10 +208,13 @@
         </div>
 
         <div class="cart-footer" id="cartFooter">
-            <div class="cart-total">
-                <span data-ru="Итого:" data-en="Total:" data-kz="Барлығы:">Итого:</span>
-                <span class="total-price" id="cartTotalPrice">3.790 ₸</span>
+            <div class="cart-total-details" style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">
+                <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:700; color:#111; border-top:1px solid #ddd; padding-top:10px; margin-top:5px;">
+                    <span data-ru="Итого:" data-en="Total:" data-kz="Барлығы:">Итого:</span>
+                    <span class="total-price" id="cartTotalPrice" style="color:#ff5500;">0 ₸</span>
+                </div>
             </div>
+
             <button class="kaspi-checkout-btn" onclick="showCheckoutForm()">
                 <span data-ru="Оформить заказ" data-en="Checkout" data-kz="Тапсырыс беру">Оформить заказ</span>
             </button>
@@ -145,7 +236,7 @@
         </div>
     </div>
 
-    <!-- Hero Bölümü (Ana Sayfa Başlangıcı) -->
+    <!-- Hero Bölümü -->
     <section class="hero" id="home">
         <div class="hero-content">
             <span class="badge" data-ru="НОВЫЙ СЕЗОН" data-en="NEW SEASON" data-kz="ЖАҢА МАУСЫМ">НОВЫЙ СЕЗОН</span>
@@ -199,8 +290,8 @@
             <div class="footer-col">
                 <h4 data-ru="Контакты" data-en="Contact" data-kz="Байланыс">Контакты</h4>
                 <p><i class="fa-solid fa-envelope"></i> msoldiermedia@gmail.com</p>
-                <p><i class="fa-brands fa-instagram"></i> @shygostore</p>
-                <p><i class="fa-brands fa-tiktok"></i> @shygostore</p>
+                <p><a href="https://instagram.com/shygostore" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-brands fa-instagram"></i> @shygostore</a></p>
+                <p><a href="https://tiktok.com/@shygostore" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-brands fa-tiktok"></i> @shygostore</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -212,9 +303,83 @@
     <script>
         let currentLang = 'ru';
         let sepet = [];
-        let hesaplananToplamFiyat = 3790;
+        let hesaplananToplamFiyat = 0;
+        let kargoUcreti = 1750;
 
         const oturumSepetAnahtari = 'shygo_sepet_' + window.location.hostname;
+
+        const janapostData = {
+            "Астана": [
+                "Бактыораза Бейсекбаева, 2", "Телжан Шонанұлы көшесі, 41/1", "Алиби Жангельдин, 42", 
+                "генерала Сабыра Ракымова, 22", "Е 117 көшесі, 38", "Абай даңғылы 19", "Жеңіс 63", "Ақан Сері, 24", 
+                "Шаймерден Косшыгулулы, 14", "Шыңғыс Айтматов көшесі, 77/8", "Күйші Дина көшесі, 1", "Алихан Бокейхан, 21/5", 
+                "Сығанақ, 54", "Ұлы дала проспект,58/1", "Алихан Бөкейхан, 25Г", "Сарайшык, 7/1", 
+                "Кордай, 79а", "Манатау 4/1", "Абылай хана, 31", "Ахмет Байтурсынулы, 51", "Бауыржан Момышұлы 13а"
+            ],
+            "Алматы": [
+                "микрорайон Жетысу-1, 18", "микрорайон Сайран, 1", "Гагарина 100", "Байтұрсынов көшесі, 80", 
+                "Тұрғыт Өзал көшесі, 88", "Брусиловский көшесі 217", "Нурмакова, 86", "Желтоксан 159", 
+                "Розыбакиев көшесі 153", "Орбита-3, 33", "Жарокова 230", "Жандосов, 177", "Тимирязева, 69", 
+                "Гагарин даңғылы, 286", "Масанчи 93", "Әбіш Кекілбайұлы көшесі, 177", "Айманов көшесі, 194"
+            ],
+            "Шымкент": [
+                "Сайрамская улица, 148", "Дулати, 202", "Восток Микрорайон, 39", "Төле би көшесі, 20", "Кутузова 45", 
+                "Керуенсарай, 188", "Тәуке хан даңғылы, 171", "18-й микрорайон, 24", "Кожанова 5", "Тамерланское шоссе 4", "Абай даңғылы, 8"
+            ],
+            "Тараз": [
+                "Жамбыл даңғылы, 18", "Жибек жолы 280", "Қожабергенов 28", "Ыкылас Дукенулы 23", "11 шағын аудан, 7 үй", "Динмухамеда Конаева, 71"
+            ],
+            "Кызылорда": [
+                "Бұқарбай батыр 41", "Есказы Нурумова, 6", "Астана 1 шағын ауданы", "проспект Абая дом 3", "Микрорайон Левый Берег, 24", "Муратбаев, 15"
+            ],
+            "Костанай": [
+                "Алтынсарин 180", "1-ші шағын ауданы, 26", "Ленина 165", "Назарбаева 213", "Мауленова 12", "Проспект Абая, 48"
+            ],
+            "Актобе": [
+                "улица 101-й Стрелковой Бригады 17", "Тараз көшесі 5", "Вокзал маны 48", "Абилкайыр-хана, 63", "Улица Мустафы Шокая, 28"
+            ],
+            "Петропавловск": [
+                "Уәлиханов 48", "Габита Мусрепова 15", "Назарбаева 185", "Жамбыл Жабаев, 106", "Интернациональная 40"
+            ],
+            "Туркестан": [
+                "О. Жарылкапов 200", "Қонаев 117", "Тауке хана, 191", "Абай көшесі 35", "Бәйдібек Қарашаұлы 102"
+            ],
+            "Кокшетау": [
+                "Махтая Сагдиева, 80", "Қасым Қайсенов көшесі 66", "Нурсултан Назарбаев 8", "улица Абая 147", "Кунанбаева 116"
+            ],
+            "Жезказган": [
+                "Абай Құнанбаев 2", "Ғарышкерлер бульвары, 22", "Сейфуллина 56", "Сатпаева, 7"
+            ],
+            "Караганда": [
+                "12-ші шағын аудан, 1", "Язев көшесі 11", "Абай көшесі 27", "Парковая 26", "Момышұлы 61", "Бұқар жырау 75"
+            ],
+            "Талдыкорган": [
+                "Ақын Сара 111", "Микрорайон Жастар 39", "Қонаев 80", "Жамбыл Жабаев 39"
+            ],
+            "Актау": [
+                "27 микрорайон, 31", "2 микрорайон, 101", "Тәуелсіздік көшесі 9", "16- шағын ауданы 43", "Достық даңғылы 14"
+            ],
+            "Семей": [
+                "Ибраева 156", "Елемесова 129", "Ауэзова 88", "Тоқтарова, 56", "Шугаева 168"
+            ],
+            "Павлодар": [
+                "Бектурова 13", "Улица Ломова, 52", "Камзин көшесі 160", "Толстого 22", "Катаева 9"
+            ],
+            "Атырау": [
+                "Баймуханова 78", "Нұрсая шағын ауданы, 75", "Жамбыл Жабаев 8", "Азаттык 87", "Махамбет Өтемісұлы көшесі 40"
+            ],
+            "Алматы облысы": [
+                "Абылайхан даңғылы 191", "Жібек жолы 28", "Жансугурова 15", "Алатау қаласы", "Б.Момышұлы көшесі, 120"
+            ],
+            "Усть-Каменогорск": [
+                "Серикбаева 27", "Тауелсыздык 28", "Қаныш Сәтпаев 6", "Кабанбай батыр, 91", "Нурсултан Назарбаев, 52"
+            ],
+            "Уральск": [
+                "Нұрсұлтан Назарбаев даңғылы 236", "Достық көшесі 33", "проспект Абулхаир Хана, 2", "Проспект Абая 171"
+            ],
+            "Рудный": ["ул. Ленина, 50", "ул. 50 лет Октября, 72"],
+            "Экибастуз": ["ул. Машхур Жусупа, 52", "ул. Ауэзова, 47"]
+        };
 
         function initApp() {
             if (window.location.hash) {
@@ -236,21 +401,23 @@
             if (activeLangEl) activeLangEl.classList.add('active-lang');
 
             document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-                el.innerText = el.getAttribute('data-' + lang);
+                el.innerHTML = el.getAttribute('data-' + lang); 
             });
 
-            const cityInput = document.getElementById('custCity');
-            const streetInput = document.getElementById('custStreet');
-            const buildingInput = document.getElementById('custBuilding');
-            const aptInput = document.getElementById('custApartment');
+            // Input placeholder'larını seçilen dile göre güncelle
+            const inputs = ['custName', 'custEmail', 'custPhone', 'custStreet', 'custBuilding', 'custEntrance', 'custApartment', 'custFloor', 'custIntercom', 'custCourierPhone', 'custDetails'];
+            inputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input && input.hasAttribute('data-' + lang + '-placeholder')) {
+                    input.placeholder = input.getAttribute('data-' + lang + '-placeholder');
+                }
+            });
 
-            if (cityInput) cityInput.placeholder = cityInput.getAttribute('data-' + lang + '-placeholder');
-            if (streetInput) streetInput.placeholder = streetInput.getAttribute('data-' + lang + '-placeholder');
-            if (buildingInput) buildingInput.placeholder = buildingInput.getAttribute('data-' + lang + '-placeholder');
-            if (aptInput) aptInput.placeholder = aptInput.getAttribute('data-' + lang + '-placeholder');
-
-            updateValidationMessages();
             sepetiGuncelleUI();
+            
+            if(document.getElementById('commonCity').value) {
+                updateJanapostBranches();
+            }
         }
 
         function toggleCart() {
@@ -307,7 +474,8 @@
                 toplamFiyat += item.fiyatSayi * item.adet;
             });
 
-            hesaplananToplamFiyat = toplamFiyat > 0 ? toplamFiyat : 3790;
+            let gecerliKargo = (document.querySelector('input[name="deliveryMethod"]:checked')?.value === 'kazpost' && toplamFiyat > 0) ? kargoUcreti : 0;
+            hesaplananToplamFiyat = toplamFiyat + gecerliKargo;
 
             if (cartCountEl) cartCountEl.innerText = toplamAdet;
 
@@ -342,9 +510,99 @@
                 }
             }
 
-            if (totalPriceEl) totalPriceEl.innerText = (toplamFiyat > 0 ? hesaplananToplamFiyat.toLocaleString() : "0") + " ₸";
+            if (totalPriceEl) totalPriceEl.innerText = (toplamFiyat > 0 ? toplamFiyat.toLocaleString() : "0") + " ₸";
+            
             const drawerFinalEl = document.getElementById('drawerFinalPaymentAmount');
             if (drawerFinalEl) drawerFinalEl.innerText = (toplamFiyat > 0 ? hesaplananToplamFiyat.toLocaleString() : "0") + " ₸";
+        }
+
+        function updateJanapostBranches() {
+            const selectedCity = document.getElementById('commonCity').value;
+            const methodsContainer = document.getElementById('deliveryMethodsContainer');
+            const noDeliveryMsg = document.getElementById('noDeliveryMsg');
+            const branchSelect = document.getElementById('janapostBranch');
+            const payBtn = document.getElementById('mainCheckoutBtn');
+            
+            branchSelect.innerHTML = ''; 
+            
+            if (selectedCity && janapostData[selectedCity] && janapostData[selectedCity].length > 0) {
+                methodsContainer.style.display = 'block';
+                noDeliveryMsg.style.display = 'none';
+                payBtn.disabled = false;
+                payBtn.style.opacity = '1';
+                
+                const branches = janapostData[selectedCity];
+                branches.forEach(branch => {
+                    const option = document.createElement('option');
+                    option.value = branch;
+                    option.textContent = branch;
+                    branchSelect.appendChild(option);
+                });
+                
+                toggleDeliveryMethod(); 
+            } else if (selectedCity) {
+                methodsContainer.style.display = 'none';
+                noDeliveryMsg.style.display = 'block';
+                payBtn.disabled = true;
+                payBtn.style.opacity = '0.5';
+            }
+        }
+
+        function toggleDeliveryMethod() {
+            const methodElement = document.querySelector('input[name="deliveryMethod"]:checked');
+            if(!methodElement) return;
+            const method = methodElement.value;
+            
+            const kazpostFields = document.getElementById('kazpostFields');
+            const janapostFields = document.getElementById('janapostFields');
+            const labelKazpost = document.getElementById('labelKazpost');
+            const labelJanapost = document.getElementById('labelJanapost');
+
+            const streetInput = document.getElementById('custStreet');
+            const buildingInput = document.getElementById('custBuilding');
+            const entranceInput = document.getElementById('custEntrance');
+            const aptInput = document.getElementById('custApartment');
+            const floorInput = document.getElementById('custFloor');
+            const intercomInput = document.getElementById('custIntercom');
+            const courierPhoneInput = document.getElementById('custCourierPhone');
+            const branchInput = document.getElementById('janapostBranch');
+
+            if (method === 'kazpost') {
+                kazpostFields.style.display = 'block';
+                janapostFields.style.display = 'none';
+                
+                labelKazpost.style.border = "1px solid #ff5500";
+                labelKazpost.style.background = "#fff3ed";
+                labelJanapost.style.border = "1px solid #ddd";
+                labelJanapost.style.background = "#fff";
+                
+                streetInput.required = true;
+                buildingInput.required = true;
+                entranceInput.required = true;
+                aptInput.required = true;
+                floorInput.required = true;
+                intercomInput.required = true;
+                courierPhoneInput.required = true;
+                branchInput.required = false;
+            } else {
+                kazpostFields.style.display = 'none';
+                janapostFields.style.display = 'block';
+                
+                labelJanapost.style.border = "1px solid #ff5500";
+                labelJanapost.style.background = "#fff3ed";
+                labelKazpost.style.border = "1px solid #ddd";
+                labelKazpost.style.background = "#fff";
+
+                streetInput.required = false;
+                buildingInput.required = false;
+                entranceInput.required = false;
+                aptInput.required = false;
+                floorInput.required = false;
+                intercomInput.required = false;
+                courierPhoneInput.required = false;
+                branchInput.required = true;
+            }
+            sepetiGuncelleUI(); 
         }
 
         function showCheckoutForm() {
@@ -360,34 +618,11 @@
             document.getElementById('checkoutForm').style.display = 'block';
             document.getElementById('drawer-title').innerText = currentLang === 'en' ? 'Checkout' : (currentLang === 'kz' ? 'Тапсырысты рәсімдеу' : 'Оформление заказа');
             
-            updateValidationMessages();
-        }
-
-        function updateValidationMessages() {
-            const inputs = [
-                document.getElementById('custName'),
-                document.getElementById('custEmail'),
-                document.getElementById('custPhone'),
-                document.getElementById('custCity'),
-                document.getElementById('custStreet'),
-                document.getElementById('custBuilding'),
-                document.getElementById('custApartment')
-            ];
-
-            let msg = "Заполните это поле";
-            if (currentLang === 'en') msg = "Please fill out this field";
-            if (currentLang === 'kz') msg = "Бұл өрісті толтырыңыз";
-
-            inputs.forEach(input => {
-                if (input) {
-                    input.oninput = function() {
-                        this.setCustomValidity('');
-                    };
-                    input.oninvalid = function(e) {
-                        e.target.setCustomValidity(msg);
-                    };
-                }
-            });
+            if(!document.getElementById('commonCity').value) {
+                document.getElementById('deliveryMethodsContainer').style.display = 'none';
+                document.getElementById('noDeliveryMsg').style.display = 'none';
+                document.getElementById('mainCheckoutBtn').disabled = false;
+            }
         }
 
         function processKaspiPayment(event) {
@@ -396,10 +631,11 @@
             const name = document.getElementById('custName').value.trim();
             const email = document.getElementById('custEmail').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
-            const city = document.getElementById('custCity').value.trim();
-            const street = document.getElementById('custStreet').value.trim();
-            const building = document.getElementById('custBuilding').value.trim();
-            const apt = document.getElementById('custApartment').value.trim();
+            
+            const methodElement = document.querySelector('input[name="deliveryMethod"]:checked');
+            const method = methodElement ? methodElement.value : 'kazpost';
+            const selectedCity = document.getElementById('commonCity').value;
+            let fullAddress = "";
 
             let toplamFiyat = 0;
             let urunDetaylari = "";
@@ -408,8 +644,24 @@
                 urunDetaylari += `${item.isim} (Adet: ${item.adet}), `;
             });
 
-            hesaplananToplamFiyat = toplamFiyat > 0 ? toplamFiyat : 3790;
-            const fullAddress = `${city}, ул. ${street}, д. ${building}, кв. ${apt}`;
+            if (method === 'kazpost') {
+                const street = document.getElementById('custStreet').value.trim();
+                const building = document.getElementById('custBuilding').value.trim();
+                const entrance = document.getElementById('custEntrance').value.trim();
+                const apartment = document.getElementById('custApartment').value.trim();
+                const floor = document.getElementById('custFloor').value.trim();
+                const intercom = document.getElementById('custIntercom').value.trim();
+                const courierPhone = document.getElementById('custCourierPhone').value.trim();
+                const details = document.getElementById('custDetails').value.trim() || 'None';
+                
+                fullAddress = `Курьер: г. ${selectedCity}, Улица: ${street}, Дом: ${building}, Подъезд: ${entrance}, Кв/Офис: ${apartment}, Этаж: ${floor}, Домофон: ${intercom}, Тел. курьеру: ${courierPhone}, Details for courier: ${details} | (Note: Order confirmation and shipping updates will be sent via email within 2-3 hours after payment)`;
+            } else {
+                const branch = document.getElementById('janapostBranch').value;
+                fullAddress = `Janapost (Самовывоз): г. ${selectedCity}, ${branch} | (Note: Order confirmation and shipping updates will be sent via email within 2-3 hours after payment)`;
+                kargoUcreti = 0; 
+            }
+
+            hesaplananToplamFiyat = toplamFiyat + kargoUcreti;
             const orderId = "SHYGO-" + Math.floor(100000 + Math.random() * 900000);
 
             const templateParams = {
@@ -438,12 +690,12 @@
         }
 
         function triggerPaymentPopup() {
-            let modalDescText = `Пожалуйста, на странице Kaspi введите точную сумму заказа: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+            let modalDescText = `Пожалуйста, на странице Kaspi введите точную сумму заказа (включая доставку): <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
             
             if (currentLang === 'en') {
-                modalDescText = `Please enter the exact order amount on the Kaspi page: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+                modalDescText = `Please enter the exact order amount on the Kaspi page (including shipping): <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
             } else if (currentLang === 'kz') {
-                modalDescText = `Kaspi парақшасында тапсырыстың дәл сомасын енгізіңіз: <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
+                modalDescText = `Kaspi парақшасында тапсырыстың дәл сомасын енгізіңіз (жеткізуді қоса алғанда): <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
             }
             
             document.getElementById('modalDesc').innerHTML = modalDescText;
