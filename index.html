@@ -38,12 +38,12 @@
         <div class="nav-right">
             <!-- Dil Seçici -->
             <div class="lang-selector">
-                <span onclick="setLanguage('ru')" id="lang-ru" class="active-lang">RUS</span>
-                <span onclick="setLanguage('en')" id="lang-en">ENG</span>
-                <span onclick="setLanguage('kz')" id="lang-kz">KAZ</span>
+                <span onclick="setLanguage('ru'); event.preventDefault();" ontouchend="setLanguage('ru'); event.preventDefault();" id="lang-ru" class="active-lang">RUS</span>
+                <span onclick="setLanguage('en'); event.preventDefault();" ontouchend="setLanguage('en'); event.preventDefault();" id="lang-en">ENG</span>
+                <span onclick="setLanguage('kz'); event.preventDefault();" ontouchend="setLanguage('kz'); event.preventDefault();" id="lang-kz">KAZ</span>
             </div>
             <!-- Sepet İkonu -->
-            <div class="cart-icon-container" onclick="toggleCart()">
+            <div class="cart-icon-container" onclick="toggleCart()" ontouchend="toggleCart(); event.preventDefault();">
                 <i class="fa-solid fa-cart-shopping icon"></i>
                 <span class="cart-badge" id="cart-count">0</span>
             </div>
@@ -51,14 +51,14 @@
     </header>
 
     <!-- Sağdan Açılır Sepet ve Form Paneli (Drawer) -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()" ontouchend="toggleCart(); event.preventDefault();"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header" style="display: flex; align-items: center; justify-content: space-between;">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i id="backToCartIcon" class="fa-solid fa-arrow-left" onclick="backToCartFromCheckout()" style="display: none; cursor: pointer; font-size: 16px; color: #333;" title="Назад к корзине"></i>
+                <i id="backToCartIcon" class="fa-solid fa-arrow-left" onclick="backToCartFromCheckout()" ontouchend="backToCartFromCheckout(); event.preventDefault();" style="display: none; cursor: pointer; font-size: 16px; color: #333;" title="Назад к корзине"></i>
                 <h3 id="drawer-title" data-ru="Ваша корзина" data-en="Your Cart" data-kz="Сіздің себетіңіз" style="margin: 0;">Ваша корзина</h3>
             </div>
-            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()" style="cursor: pointer; font-size: 18px;"></i>
+            <i class="fa-solid fa-xmark close-cart" onclick="toggleCart()" ontouchend="toggleCart(); event.preventDefault();" style="cursor: pointer; font-size: 18px;"></i>
         </div>
 
         <!-- Aşama 1: Ürün Listesi -->
@@ -203,11 +203,11 @@
                 </span>
             </div>
 
-            <button onclick="triggerPaymentPopup()" class="kaspi-checkout-btn" style="margin-bottom: 15px;">
+            <button onclick="triggerPaymentPopup()" ontouchend="triggerPaymentPopup(); event.preventDefault();" class="kaspi-checkout-btn" style="margin-bottom: 15px;">
                 <span data-ru="Оплатить через Kaspi Pay" data-en="Pay with Kaspi Pay" data-kz="Kaspi Pay арқылы төлеу">Оплатить через Kaspi Pay</span>
             </button>
 
-            <a href="#" onclick="backToCartAndClear(event)" style="font-size: 13px; color: #666; text-decoration: underline; display: inline-block;" data-ru="← Завершить и очистить корзину" data-en="← Finish and clear cart" data-kz="← Аяқтау және себетті тазарту">← Завершить и очистить корзину</a>
+            <a href="#" onclick="backToCartAndClear(event)" ontouchend="backToCartAndClear(event);" style="font-size: 13px; color: #666; text-decoration: underline; display: inline-block;" data-ru="← Завершить и очистить корзину" data-en="← Finish and clear cart" data-kz="← Аяқтау және себетті тазарту">← Завершить и очистить корзину</a>
         </div>
 
         <div class="cart-footer" id="cartFooter">
@@ -218,7 +218,7 @@
                 </div>
             </div>
 
-            <button class="kaspi-checkout-btn" onclick="showCheckoutForm()">
+            <button class="kaspi-checkout-btn" onclick="showCheckoutForm()" ontouchend="showCheckoutForm(); event.preventDefault();">
                 <span data-ru="Оформить заказ" data-en="Checkout" data-kz="Тапсырыс беру">Оформить заказ</span>
             </button>
         </div>
@@ -233,8 +233,8 @@
             <h3 id="modalTitle" style="font-size: 22px; font-weight: 800; color: #222; margin-bottom: 10px;" data-ru="Готовы к оплате?" data-en="Ready to pay?" data-kz="Төлемге дайынсыз ба?">Готовы к оплате?</h3>
             <p id="modalDesc" style="font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px;"></p>
             <div style="display: flex; gap: 10px;">
-                <button onclick="closePaymentModal()" style="flex: 1; padding: 12px; border: 1px solid #ddd; background: #f9f9f9; color: #333; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s;" data-ru="Отмена" data-en="Cancel" data-kz="Болдырмау">Отмена</button>
-                <button onclick="redirectToKaspi()" style="flex: 1; padding: 12px; border: none; background: #ff5722; color: #fff; font-weight: 700; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(255,87,34,0.3); transition: transform 0.2s;" data-ru="Перейти к Kaspi" data-en="Go to Kaspi" data-kz="Kaspi-ге өту">Перейти к Kaspi</button>
+                <button onclick="closePaymentModal()" ontouchend="closePaymentModal(); event.preventDefault();" style="flex: 1; padding: 12px; border: 1px solid #ddd; background: #f9f9f9; color: #333; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s;" data-ru="Отмена" data-en="Cancel" data-kz="Болдырмау">Отмена</button>
+                <button onclick="redirectToKaspi()" ontouchend="redirectToKaspi(); event.preventDefault();" style="flex: 1; padding: 12px; border: none; background: #ff5722; color: #fff; font-weight: 700; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(255,87,34,0.3); transition: transform 0.2s;" data-ru="Перейти к Kaspi" data-en="Go to Kaspi" data-kz="Kaspi-ге өту">Перейти к Kaspi</button>
             </div>
         </div>
     </div>
@@ -270,7 +270,7 @@
                             <span class="old-price">4.290 ₸</span>
                             <span class="price">3.790 ₸</span>
                         </div>
-                        <button class="add-to-cart-btn" onclick="sepeteUrunEkle()" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                        <button class="add-to-cart-btn" onclick="sepeteUrunEkle()" ontouchend="sepeteUrunEkle(); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
                     </div>
                 </div>
             </div>
@@ -302,7 +302,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Fonksiyonları ve Geri Dönüş Butonu Desteği -->
+    <!-- JavaScript Fonksiyonları -->
     <script>
         let currentLang = 'ru';
         let sepet = [];
@@ -500,12 +500,12 @@
                                     <span class="cart-item-price" style="font-weight: 600; color: #ff5722; display: block; margin-bottom: 6px;">${urunToplam.toLocaleString()} ₸</span>
                                     
                                     <div style="display: flex; align-items: center; gap: 8px;">
-                                        <button onclick="miktarDegistir(${index}, -1)" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
+                                        <button onclick="miktarDegistir(${index}, -1)" ontouchend="miktarDegistir(${index}, -1); event.preventDefault();" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
                                         <span style="font-size: 14px; font-weight: 600; min-width: 20px; text-align: center;">${item.adet}</span>
-                                        <button onclick="miktarDegistir(${index}, 1)" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
+                                        <button onclick="miktarDegistir(${index}, 1)" ontouchend="miktarDegistir(${index}, 1); event.preventDefault();" style="background: #f1f1f1; border: none; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
                                     </div>
                                 </div>
-                                <i class="fa-solid fa-trash" onclick="sepettenCikar(${index})" style="cursor: pointer; color: #ff5722; padding: 10px;"></i>
+                                <i class="fa-solid fa-trash" onclick="sepettenCikar(${index})" ontouchend="sepettenCikar(${index}); event.preventDefault();" style="cursor: pointer; color: #ff5722; padding: 10px;"></i>
                             </div>
                         `;
                     });
@@ -762,7 +762,7 @@
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
             sepetiGuncelleUI();
-            document.getElementById('orderForm'].reset();
+            document.getElementById('orderForm').reset();
             document.getElementById('paymentStep').style.display = 'none';
             document.getElementById('cartBody').style.display = 'block';
             document.getElementById('cartFooter').style.display = 'block';
