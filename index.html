@@ -212,6 +212,14 @@
 
         <div class="cart-footer" id="cartFooter">
             <div class="cart-total-details" style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">
+                
+                <!-- YENİ EKLENEN İNDİRİM ALANI -->
+                <div class="discount-code-container" style="display:flex; gap:8px; margin-bottom: 15px;">
+                    <input type="text" id="discountInput" placeholder="Промокод (если есть)" data-ru-placeholder="Промокод (если есть)" data-en-placeholder="Promo code (if any)" data-kz-placeholder="Промокод (егер болса)" style="flex:1; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+                    <button type="button" onclick="uygulaIndirim()" ontouchend="uygulaIndirim(); event.preventDefault();" style="background: #111; color: #fff; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: 600;" data-ru="Применить" data-en="Apply" data-kz="Қолдану">Применить</button>
+                </div>
+                <div id="discountMessage" style="font-size: 13px; margin-bottom: 15px; display: none; font-weight: 600;"></div>
+                
                 <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:700; color:#111; border-top:1px solid #ddd; padding-top:10px; margin-top:5px;">
                     <span data-ru="Итого:" data-en="Total:" data-kz="Барлығы:">Итого:</span>
                     <span class="total-price" id="cartTotalPrice" style="color:#ff5500;">0 ₸</span>
@@ -308,6 +316,7 @@
         let sepet = [];
         let hesaplananToplamFiyat = 0;
         let kargoUcreti = 1750;
+        let indirimYuzdesi = 0; // Yeni İndirim Değişkeni
 
         const oturumSepetAnahtari = 'shygo_sepet_' + window.location.hostname;
 
@@ -407,8 +416,8 @@
                 el.innerHTML = el.getAttribute('data-' + lang); 
             });
 
-            // Input placeholder'larını seçilen dile göre güncelle
-            const inputs = ['custName', 'custEmail', 'custPhone', 'custStreet', 'custBuilding', 'custEntrance', 'custApartment', 'custFloor', 'custIntercom', 'custCourierPhone', 'custDetails'];
+            // Input placeholder'larını seçilen dile göre güncelle (discountInput eklendi)
+            const inputs = ['custName', 'custEmail', 'custPhone', 'custStreet', 'custBuilding', 'custEntrance', 'custApartment', 'custFloor', 'custIntercom', 'custCourierPhone', 'custDetails', 'discountInput'];
             inputs.forEach(id => {
                 const input = document.getElementById(id);
                 if (input && input.hasAttribute('data-' + lang + '-placeholder')) {
@@ -464,6 +473,33 @@
             sepetiGuncelleUI();
         }
 
+        // YENİ İNDİRİM UYGULAMA FONKSİYONU
+        function uygulaIndirim() {
+            const input = document.getElementById('discountInput').value.trim().toUpperCase();
+            const msgEl = document.getElementById('discountMessage');
+            
+            if (input === 'SHY05') {
+                indirimYuzdesi = 0.05; // %5 indirim
+                msgEl.style.display = 'block';
+                msgEl.style.color = '#28a745'; // Yeşil renk
+                
+                let basariMsj = "Скидка 5% применена!";
+                if(currentLang === 'en') basariMsj = "5% discount applied!";
+                if(currentLang === 'kz') basariMsj = "5% жеңілдік қолданылды!";
+                msgEl.innerText = basariMsj;
+            } else {
+                indirimYuzdesi = 0;
+                msgEl.style.display = 'block';
+                msgEl.style.color = '#dc3545'; // Kırmızı renk
+                
+                let hataMsj = "Неверный код!";
+                if(currentLang === 'en') hataMsj = "Invalid code!";
+                if(currentLang === 'kz') hataMsj = "Қате код!";
+                msgEl.innerText = hataMsj;
+            }
+            sepetiGuncelleUI();
+        }
+
         function sepetiGuncelleUI() {
             const cartCountEl = document.getElementById('cart-count');
             const cartItemsContainer = document.getElementById('cartItemsContainer');
@@ -477,8 +513,12 @@
                 toplamFiyat += item.fiyatSayi * item.adet;
             });
 
-            let gecerliKargo = (document.querySelector('input[name="deliveryMethod"]:checked')?.value === 'kazpost' && toplamFiyat > 0) ? kargoUcreti : 0;
-            hesaplananToplamFiyat = toplamFiyat + gecerliKargo;
+            // İNDİRİM HESAPLAMA
+            let indirimMiktari = toplamFiyat * indirimYuzdesi;
+            let indirimliToplamFiyat = toplamFiyat - indirimMiktari;
+
+            let gecerliKargo = (document.querySelector('input[name="deliveryMethod"]:checked')?.value === 'kazpost' && indirimliToplamFiyat > 0) ? kargoUcreti : 0;
+            hesaplananToplamFiyat = indirimliToplamFiyat + gecerliKargo;
 
             if (cartCountEl) cartCountEl.innerText = toplamAdet;
 
@@ -513,7 +553,14 @@
                 }
             }
 
-            if (totalPriceEl) totalPriceEl.innerText = (toplamFiyat > 0 ? toplamFiyat.toLocaleString() : "0") + " ₸";
+            // İNDİRİMLİ FİYATIN ARAYÜZE YAZILMASI
+            if (totalPriceEl) {
+                if (indirimYuzdesi > 0 && toplamFiyat > 0) {
+                    totalPriceEl.innerHTML = `<span style="text-decoration:line-through; font-size:14px; color:#999; margin-right:8px;">${toplamFiyat.toLocaleString()} ₸</span>${indirimliToplamFiyat.toLocaleString()} ₸`;
+                } else {
+                    totalPriceEl.innerText = (toplamFiyat > 0 ? toplamFiyat.toLocaleString() : "0") + " ₸";
+                }
+            }
             
             const drawerFinalEl = document.getElementById('drawerFinalPaymentAmount');
             if (drawerFinalEl) drawerFinalEl.innerText = (toplamFiyat > 0 ? hesaplananToplamFiyat.toLocaleString() : "0") + " ₸";
@@ -664,6 +711,14 @@
                 urunDetaylari += `${item.isim} (Adet: ${item.adet}), `;
             });
 
+            // SİPARİŞ MESAJINA İNDİRİM BİLGİSİNİ EKLEME
+            let indirimMiktari = toplamFiyat * indirimYuzdesi;
+            let indirimliToplamFiyat = toplamFiyat - indirimMiktari;
+            
+            if (indirimYuzdesi > 0) {
+                urunDetaylari += ` [KULLANILAN KOD: SHY05 - %5 İNDİRİM UYGULANDI]`;
+            }
+
             if (method === 'kazpost') {
                 const street = document.getElementById('custStreet').value.trim();
                 const building = document.getElementById('custBuilding').value.trim();
@@ -681,7 +736,7 @@
                 kargoUcreti = 0; 
             }
 
-            hesaplananToplamFiyat = toplamFiyat + kargoUcreti;
+            hesaplananToplamFiyat = indirimliToplamFiyat + kargoUcreti;
             const orderId = "SHYGO-" + Math.floor(100000 + Math.random() * 900000);
 
             const templateParams = {
@@ -726,6 +781,12 @@
 
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
+            
+            // İNDİRİM ALANLARINI SIFIRLAMA
+            indirimYuzdesi = 0;
+            if(document.getElementById('discountInput')) document.getElementById('discountInput').value = '';
+            if(document.getElementById('discountMessage')) document.getElementById('discountMessage').style.display = 'none';
+
             sepetiGuncelleUI();
             document.getElementById('orderForm').reset();
             document.getElementById('paymentStep').style.display = 'none';
@@ -761,6 +822,12 @@
             event.preventDefault();
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
+            
+            // İNDİRİM ALANLARINI SIFIRLAMA
+            indirimYuzdesi = 0;
+            if(document.getElementById('discountInput')) document.getElementById('discountInput').value = '';
+            if(document.getElementById('discountMessage')) document.getElementById('discountMessage').style.display = 'none';
+            
             sepetiGuncelleUI();
             document.getElementById('orderForm').reset();
             document.getElementById('paymentStep').style.display = 'none';
