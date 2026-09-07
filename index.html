@@ -22,8 +22,8 @@
     <!-- Üst Turuncu Duyuru Bandı -->
     <div class="top-announcement-bar">
         <div class="announcement-track">
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА НАШ ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON OUR BEST SELLER • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БІЗДІҢ ЕҢ ӨТІМДІ ӨНІМІМІЗГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА НАШ ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА НАШ ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON OUR BEST SELLER • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БІЗДІҢ ЕҢ ӨТІМДІ ӨНІМІМІЗГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА НАШ ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
         </div>
     </div>
 
@@ -190,7 +190,7 @@
             
             <div style="border: 2px dashed #ff5722; border-radius: 12px; padding: 15px; margin-bottom: 15px; background: #fffaf8;">
                 <span style="font-size: 13px; color: #555; display: block; margin-bottom: 4px;" data-ru="К оплате (с учетом доставки):" data-en="Amount to pay (including shipping):" data-kz="Төленетін сома (жеткізуді қоса алғанда):">К оплате (с учетом доставки):</span>
-                <span id="drawerFinalPaymentAmount" style="font-size: 26px; font-weight: 800; color: #ff5722;">4.290 ₸</span>
+                <span id="drawerFinalPaymentAmount" style="font-size: 26px; font-weight: 800; color: #ff5722;">0 ₸</span>
             </div>
 
             <!-- Çok Dilli Bildirim Kutusu -->
@@ -213,7 +213,6 @@
         <div class="cart-footer" id="cartFooter">
             <div class="cart-total-details" style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">
                 
-                <!-- YENİ EKLENEN İNDİRİM ALANI -->
                 <div class="discount-code-container" style="display:flex; gap:8px; margin-bottom: 15px;">
                     <input type="text" id="discountInput" placeholder="Промокод (если есть)" data-ru-placeholder="Промокод (если есть)" data-en-placeholder="Promo code (if any)" data-kz-placeholder="Промокод (егер болса)" style="flex:1; padding:9px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
                     <button type="button" onclick="uygulaIndirim()" ontouchend="uygulaIndirim(); event.preventDefault();" style="background: #111; color: #fff; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; font-weight: 600;" data-ru="Применить" data-en="Apply" data-kz="Қолдану">Применить</button>
@@ -238,11 +237,36 @@
             <div style="width: 65px; height: 65px; background: #fff3ed; color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 15px; box-shadow: 0 8px 20px rgba(255,87,34,0.2);">
                 <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <h3 id="modalTitle" style="font-size: 22px; font-weight: 800; color: #222; margin-bottom: 10px;" data-ru="Готовы к оплате?" data-en="Ready to pay?" data-kz="Төлемге дайынсыз ба?">Готовы к оплате?</h3>
-            <p id="modalDesc" style="font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px;"></p>
+            <h3 id="modalTitlePayment" style="font-size: 22px; font-weight: 800; color: #222; margin-bottom: 10px;" data-ru="Готовы к оплате?" data-en="Ready to pay?" data-kz="Төлемге дайынсыз ба?">Готовы к оплате?</h3>
+            <p id="modalDescPayment" style="font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px;"></p>
             <div style="display: flex; gap: 10px;">
                 <button onclick="closePaymentModal()" ontouchend="closePaymentModal(); event.preventDefault();" style="flex: 1; padding: 12px; border: 1px solid #ddd; background: #f9f9f9; color: #333; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s;" data-ru="Отмена" data-en="Cancel" data-kz="Болдырмау">Отмена</button>
                 <button onclick="redirectToKaspi()" ontouchend="redirectToKaspi(); event.preventDefault();" style="flex: 1; padding: 12px; border: none; background: #ff5722; color: #fff; font-weight: 700; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(255,87,34,0.3); transition: transform 0.2s;" data-ru="Перейти к Kaspi" data-en="Go to Kaspi" data-kz="Kaspi-ге өту">Перейти к Kaspi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ürün İnceleme Modalı (Lightbox) -->
+    <div id="productModal" class="modal-overlay" onclick="closeProductModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeProductModal(event)">&times;</span>
+            <div class="modal-body" style="display: flex; width: 100%;">
+                <div class="modal-gallery">
+                    <button class="slider-btn prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                    <img id="modalMainImage" src="" alt="Shygo Product">
+                    <button class="slider-btn next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Название товара</h2>
+                    <div class="modal-prices">
+                        <span id="modalOldPrice" class="old-price" style="display: none;"></span>
+                        <span id="modalPrice" class="price"></span>
+                    </div>
+                    <p id="modalDesc" class="product-desc"></p>
+                    <button id="modalAddToCart" class="cta-btn add-to-cart-modal">
+                        <span id="modalAddBtnText">В корзину</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -265,8 +289,9 @@
         <h2 class="section-title" data-ru="Наши товары" data-en="Our Products" data-kz="Біздің өнімдер">Наши товары</h2>
         
         <div class="product-grid">
-            <div class="product-card">
-                <div class="badge-discount" data-ru="СПЕЦСЕРИЯ" data-en="SPECIAL" data-kz="АРНАЙЫ СЕРИЯ">СПЕЦСЕРИЯ</div>
+            <!-- Ürün 1: Orijinal Sise (Best Seller) - İndirimli -->
+            <div class="product-card" onclick="openProductModal(1)">
+                <div class="badge-discount" data-ru="ХИТ ПРОДАЖ" data-en="BEST SELLER" data-kz="ХИТ ПРОДАЖ">ХИТ ПРОДАЖ</div>
                 <div class="img-container">
                     <img src="gercek-foto.jpg" alt="Shygo Fıs Fıs Suluğu" class="product-img">
                 </div>
@@ -275,10 +300,46 @@
                     <p class="product-desc" data-ru="Матовая черная крышка, оранжевый прозрачный корпус и механизм спрея." data-en="Matte black lid, transparent orange body and spray mechanism." data-kz="Матты қара қақпақ, ашық сары мөлдір корпус және бүріккіш механизмі.">Матовая черная крышка, оранжевый прозрачный корпус и механизм спрея.</p>
                     <div class="price-row">
                         <div class="price-container">
-                            <span class="old-price">5.790 ₸</span>
+                            <span class="old-price" style="text-decoration: line-through; color: #999; margin-right: 8px; font-size: 14px;">5.790 ₸</span>
                             <span class="price">4.290 ₸</span>
                         </div>
-                        <button class="add-to-cart-btn" onclick="sepeteUrunEkle()" ontouchend="sepeteUrunEkle(); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle(1)" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün 2: Shaker (New) - Fiyat Siyah -->
+            <div class="product-card" onclick="openProductModal(2)">
+                <div class="badge-discount" data-ru="НОВИНКА" data-en="NEW" data-kz="ЖАҢА">НОВИНКА</div>
+                <div class="img-container">
+                    <img src="shygo-shaker.jpg" alt="Shygo Shaker" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 data-ru="Шейкер Shygo" data-en="Shygo Shaker" data-kz="Shygo Шейкері">Шейкер Shygo</h3>
+                    <p class="product-desc" data-ru="Идеально для протеиновых коктейлей. Герметичная крышка и мерная шкала." data-en="Perfect for protein shakes. Leak-proof lid and measuring scale." data-kz="Протеин коктейльдеріне арналған. Су өткізбейтін қақпақ және өлшеу шкаласы.">Идеально для протеиновых коктейлей. Герметичная крышка и мерная шкала.</p>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="price" style="color: #111;">4.590 ₸</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle(2)" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün 3: Stanley (New - 6 Hours, Fiyat Siyah) -->
+            <div class="product-card" onclick="openProductModal(3)">
+                <div class="badge-discount" data-ru="НОВИНКА" data-en="NEW" data-kz="ЖАҢА">НОВИНКА</div>
+                <div class="img-container">
+                    <img src="shygo-stanley.jpg" alt="Shygo Stanley" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 data-ru="Термокружка Shygo Stanley" data-en="Shygo Stanley Tumbler" data-kz="Shygo Stanley Термокружкасы">Термокружка Shygo Stanley</h3>
+                    <p class="product-desc" data-ru="Премиум термокружка. Сохраняет напитки холодными или горячими до 6 часов." data-en="Premium insulated tumbler. Keeps drinks cold or hot for up to 6 hours." data-kz="Премиум термокружка. Сусындарды 6 сағатқа дейін ыстық немесе суық сақтайды.">Премиум термокружка. Сохраняет напитки холодными или горячими до 6 часов.</p>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="price" style="color: #111;">5.790 ₸</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle(3)" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
                     </div>
                 </div>
             </div>
@@ -316,79 +377,89 @@
         let sepet = [];
         let hesaplananToplamFiyat = 0;
         let kargoUcreti = 1750;
-        let indirimYuzdesi = 0; // Yeni İndirim Değişkeni
+        let indirimYuzdesi = 0; 
+        
+        let currentModalProductId = null;
+        let currentImageIndex = 0;
 
         const oturumSepetAnahtari = 'shygo_sepet_' + window.location.hostname;
 
+        // ÜRÜN VERİTABANI
+        const products = {
+            1: {
+                id: 1,
+                images: ['gercek-foto.jpg'],
+                priceSayi: 4290,
+                oldPrice: "5.790 ₸",
+                priceStr: "4.290 ₸",
+                name: {
+                    ru: "Спортивная бутылка Shygo Spray",
+                    en: "Shygo Spray Sport Bottle",
+                    kz: "Shygo Бүріккіш Спорттық Бөтелкесі"
+                },
+                desc: {
+                    ru: "Специальная технология спрея. Охлаждающий эффект в жаркие дни. Матовая черная крышка, оранжевый полупрозрачный корпус.",
+                    en: "Special spray technology. Cooling effect on hot days. Matte black lid, orange translucent body.",
+                    kz: "Арнайы бүріккіш технологиясы. Ыстық күндердегі салқындатқыш әсер. Матты қара қақпақ, сарғылт мөлдір корпус."
+                }
+            },
+            2: {
+                id: 2,
+                images: ['shygo-shaker.jpg', 'shaker-yakin.jpg', 'shaker-alti.jpg', 'shaker-ml.jpg'],
+                priceSayi: 4590,
+                oldPrice: "",
+                priceStr: "4.590 ₸",
+                name: {
+                    ru: "Шейкер Shygo",
+                    en: "Shygo Shaker",
+                    kz: "Shygo Шейкері"
+                },
+                desc: {
+                    ru: "Идеально для протеиновых коктейлей. Герметичная крышка, удобная мерная шкала и идеальное взбивание без комочков.",
+                    en: "Perfect for protein shakes. Leak-proof lid, convenient measuring scale, and lump-free mixing.",
+                    kz: "Протеин коктейльдеріне өте қолайлы. Су өткізбейтін қақпақ, ыңғайлы өлшеу шкаласы және кесектерсіз араластыру."
+                }
+            },
+            3: {
+                id: 3,
+                images: ['shygo-stanley.jpg', 'staney-yakindan.jpg', 'stanley-h-y.jpg', 'stanley-h.jpg', 'stanley-1.jpg', 'stanley-2.jpg', 'stanley-3.jpg'],
+                priceSayi: 5790,
+                oldPrice: "",
+                priceStr: "5.790 ₸",
+                name: {
+                    ru: "Термокружка Shygo Stanley",
+                    en: "Shygo Stanley Tumbler",
+                    kz: "Shygo Stanley Термокружкасы"
+                },
+                desc: {
+                    ru: "Премиум термокружка. Вакуумная изоляция сохраняет напитки ледяными или горячими до 6 часов. В комплекте удобная трубочка.",
+                    en: "Premium insulated tumbler. Vacuum insulation keeps drinks ice-cold or piping hot for up to 6 hours. Straw included.",
+                    kz: "Премиум термокружка. Вакуумдық оқшаулау сусындарды 6 сағатқа дейін ыстық немесе мұздай күйде сақтайды. Түтікше жиынтықта бар."
+                }
+            }
+        };
+
         const janapostData = {
-            "Астана": [
-                "Бактыораза Бейсекбаева, 2", "Телжан Шонанұлы көшесі, 41/1", "Алиби Жангельдин, 42", 
-                "генерала Сабыра Ракымова, 22", "Е 117 көшесі, 38", "Абай даңғылы 19", "Жеңіс 63", "Ақан Сері, 24", 
-                "Шаймерден Косшыгулулы, 14", "Шыңғыс Айтматов көшесі, 77/8", "Күйші Дина көшесі, 1", "Алихан Бокейхан, 21/5", 
-                "Сығанақ, 54", "Ұлы дала проспект,58/1", "Алихан Бөкейхан, 25Г", "Сарайшык, 7/1", 
-                "Кордай, 79а", "Манатау 4/1", "Абылай хана, 31", "Ахмет Байтурсынулы, 51", "Бауыржан Момышұлы 13а"
-            ],
-            "Алматы": [
-                "микрорайон Жетысу-1, 18", "микрорайон Сайран, 1", "Гагарина 100", "Байтұрсынов көшесі, 80", 
-                "Тұрғыт Өзал көшесі, 88", "Брусиловский көшесі 217", "Нурмакова, 86", "Желтоксан 159", 
-                "Розыбакиев көшесі 153", "Орбита-3, 33", "Жарокова 230", "Жандосов, 177", "Тимирязева, 69", 
-                "Гагарин даңғылы, 286", "Масанчи 93", "Әбіш Кекілбайұлы көшесі, 177", "Айманов көшесі, 194"
-            ],
-            "Шымкент": [
-                "Сайрамская улица, 148", "Дулати, 202", "Восток Микрорайон, 39", "Төле би көшесі, 20", "Кутузова 45", 
-                "Керуенсарай, 188", "Тәуке хан даңғылы, 171", "18-й микрорайон, 24", "Кожанова 5", "Тамерланское шоссе 4", "Абай даңғылы, 8"
-            ],
-            "Тараз": [
-                "Жамбыл даңғылы, 18", "Жибек жолы 280", "Қожабергенов 28", "Ыкылас Дукенулы 23", "11 шағын аудан, 7 үй", "Динмухамеда Конаева, 71"
-            ],
-            "Кызылорда": [
-                "Бұқарбай батыр 41", "Есказы Нурумова, 6", "Астана 1 шағын ауданы", "проспект Абая дом 3", "Микрорайон Левый Берег, 24", "Муратбаев, 15"
-            ],
-            "Костанай": [
-                "Алтынсарин 180", "1-ші шағын ауданы, 26", "Ленина 165", "Назарбаева 213", "Мауленова 12", "Проспект Абая, 48"
-            ],
-            "Актобе": [
-                "улица 101-й Стрелковой Бригады 17", "Тараз көшесі 5", "Вокзал маны 48", "Абилкайыр-хана, 63", "Улица Мустафы Шокая, 28"
-            ],
-            "Петропавловск": [
-                "Уәлиханов 48", "Габита Мусрепова 15", "Назарбаева 185", "Жамбыл Жабаев, 106", "Интернациональная 40"
-            ],
-            "Туркестан": [
-                "О. Жарылкапов 200", "Қонаев 117", "Тауке хана, 191", "Абай көшесі 35", "Бәйдібек Қарашаұлы 102"
-            ],
-            "Кокшетау": [
-                "Махтая Сагдиева, 80", "Қасым Қайсенов көшесі 66", "Нурсултан Назарбаев 8", "улица Абая 147", "Кунанбаева 116"
-            ],
-            "Жезказган": [
-                "Абай Құнанбаев 2", "Ғарышкерлер бульвары, 22", "Сейфуллина 56", "Сатпаева, 7"
-            ],
-            "Караганда": [
-                "12-ші шағын аудан, 1", "Язев көшесі 11", "Абай көшесі 27", "Парковая 26", "Момышұлы 61", "Бұқар жырау 75"
-            ],
-            "Талдыкорган": [
-                "Ақын Сара 111", "Микрорайон Жастар 39", "Қонаев 80", "Жамбыл Жабаев 39"
-            ],
-            "Актау": [
-                "27 микрорайон, 31", "2 микрорайон, 101", "Тәуелсіздік көшесі 9", "16- шағын ауданы 43", "Достық даңғылы 14"
-            ],
-            "Семей": [
-                "Ибраева 156", "Елемесова 129", "Ауэзова 88", "Тоқтарова, 56", "Шугаева 168"
-            ],
-            "Павлодар": [
-                "Бектурова 13", "Улица Ломова, 52", "Камзин көшесі 160", "Толстого 22", "Катаева 9"
-            ],
-            "Атырау": [
-                "Баймуханова 78", "Нұрсая шағын ауданы, 75", "Жамбыл Жабаев 8", "Азаттык 87", "Махамбет Өтемісұлы көшесі 40"
-            ],
-            "Алматы облысы": [
-                "Абылайхан даңғылы 191", "Жібек жолы 28", "Жансугурова 15", "Алатау қаласы", "Б.Момышұлы көшесі, 120"
-            ],
-            "Усть-Каменогорск": [
-                "Серикбаева 27", "Тауелсыздык 28", "Қаныш Сәтпаев 6", "Кабанбай батыр, 91", "Нурсултан Назарбаев, 52"
-            ],
-            "Уральск": [
-                "Нұрсұлтан Назарбаев даңғылы 236", "Достық көшесі 33", "проспект Абулхаир Хана, 2", "Проспект Абая 171"
-            ],
+            "Астана": [ "Бактыораза Бейсекбаева, 2", "Телжан Шонанұлы көшесі, 41/1", "Алиби Жангельдин, 42", "генерала Сабыра Ракымова, 22", "Е 117 көшесі, 38", "Абай даңғылы 19", "Жеңіс 63", "Ақан Сері, 24", "Шаймерден Косшыгулулы, 14", "Шыңғыс Айтматов көшесі, 77/8", "Күйші Дина көшесі, 1", "Алихан Бокейхан, 21/5", "Сығанақ, 54", "Ұлы дала проспект,58/1", "Алихан Бөкейхан, 25Г", "Сарайшык, 7/1", "Кордай, 79а", "Манатау 4/1", "Абылай хана, 31", "Ахмет Байтурсынулы, 51", "Бауыржан Момышұлы 13а" ],
+            "Алматы": [ "микрорайон Жетысу-1, 18", "микрорайон Сайран, 1", "Гагарина 100", "Байтұрсынов көшесі, 80", "Тұрғыт Өзал көшесі, 88", "Брусиловский көшесі 217", "Нурмакова, 86", "Желтоксан 159", "Розыбакиев көшесі 153", "Орбита-3, 33", "Жарокова 230", "Жандосов, 177", "Тимирязева, 69", "Гагарин даңғылы, 286", "Масанчи 93", "Әбіш Кекілбайұлы көшесі, 177", "Айманов көшесі, 194" ],
+            "Шымкент": [ "Сайрамская улица, 148", "Дулати, 202", "Восток Микрорайон, 39", "Төле би көшесі, 20", "Кутузова 45", "Керуенсарай, 188", "Тәуке хан даңғылы, 171", "18-й микрорайон, 24", "Кожанова 5", "Тамерланское шоссе 4", "Абай даңғылы, 8" ],
+            "Тараз": [ "Жамбыл даңғылы, 18", "Жибек жолы 280", "Қожабергенов 28", "Ыкылас Дукенулы 23", "11 шағын аудан, 7 үй", "Динмухамеда Конаева, 71" ],
+            "Кызылорда": [ "Бұқарбай батыр 41", "Есказы Нурумова, 6", "Астана 1 шағын ауданы", "проспект Абая дом 3", "Микрорайон Левый Берег, 24", "Муратбаев, 15" ],
+            "Костанай": [ "Алтынсарин 180", "1-ші шағын ауданы, 26", "Ленина 165", "Назарбаева 213", "Мауленова 12", "Проспект Абая, 48" ],
+            "Актобе": [ "улица 101-й Стрелковой Бригады 17", "Тараз көшесі 5", "Вокзал маны 48", "Абилкайыр-хана, 63", "Улица Мустафы Шокая, 28" ],
+            "Петропавловск": [ "Уәлиханов 48", "Габита Мусрепова 15", "Назарбаева 185", "Жамбыл Жабаев, 106", "Интернациональная 40" ],
+            "Туркестан": [ "О. Жарылкапов 200", "Қонаев 117", "Тауке хана, 191", "Абай көшесі 35", "Бәйдібек Қарашаұлы 102" ],
+            "Кокшетау": [ "Махтая Сагдиева, 80", "Қасым Қайсенов көшесі 66", "Нурсултан Назарбаев 8", "улица Абая 147", "Кунанбаева 116" ],
+            "Жезказган": [ "Абай Құнанбаев 2", "Ғарышкерлер бульвары, 22", "Сейфуллина 56", "Сатпаева, 7" ],
+            "Караганда": [ "12-ші шағын аудан, 1", "Язев көшесі 11", "Абай көшесі 27", "Парковая 26", "Момышұлы 61", "Бұқар жырау 75" ],
+            "Талдыкорган": [ "Ақын Сара 111", "Микрорайон Жастар 39", "Қонаев 80", "Жамбыл Жабаев 39" ],
+            "Актау": [ "27 микрорайон, 31", "2 микрорайон, 101", "Тәуелсіздік көшесі 9", "16- шағын ауданы 43", "Достық даңғылы 14" ],
+            "Семей": [ "Ибраева 156", "Елемесова 129", "Ауэзова 88", "Тоқтарова, 56", "Шугаева 168" ],
+            "Павлодар": [ "Бектурова 13", "Улица Ломова, 52", "Камзин көшесі 160", "Толстого 22", "Катаева 9" ],
+            "Атырау": [ "Баймуханова 78", "Нұрсая шағын ауданы, 75", "Жамбыл Жабаев 8", "Азаттык 87", "Махамбет Өтемісұлы көшесі 40" ],
+            "Алматы облысы": [ "Абылайхан даңғылы 191", "Жібек жолы 28", "Жансугурова 15", "Алатау қаласы", "Б.Момышұлы көшесі, 120" ],
+            "Усть-Каменогорск": [ "Серикбаева 27", "Тауелсыздык 28", "Қаныш Сәтпаев 6", "Кабанбай батыр, 91", "Нурсултан Назарбаев, 52" ],
+            "Уральск": [ "Нұрсұлтан Назарбаев даңғылы 236", "Достық көшесі 33", "проспект Абулхаир Хана, 2", "Проспект Абая 171" ],
             "Рудный": ["ул. Ленина, 50", "ул. 50 лет Октября, 72"],
             "Экибастуз": ["ул. Машхур Жусупа, 52", "ул. Ауэзова, 47"]
         };
@@ -416,7 +487,6 @@
                 el.innerHTML = el.getAttribute('data-' + lang); 
             });
 
-            // Input placeholder'larını seçilen dile göre güncelle (discountInput eklendi)
             const inputs = ['custName', 'custEmail', 'custPhone', 'custStreet', 'custBuilding', 'custEntrance', 'custApartment', 'custFloor', 'custIntercom', 'custCourierPhone', 'custDetails', 'discountInput'];
             inputs.forEach(id => {
                 const input = document.getElementById(id);
@@ -424,6 +494,10 @@
                     input.placeholder = input.getAttribute('data-' + lang + '-placeholder');
                 }
             });
+
+            if (currentModalProductId) {
+                updateModalContent();
+            }
 
             sepetiGuncelleUI();
             
@@ -439,23 +513,106 @@
             overlay.classList.toggle('open');
         }
 
-        function sepeteUrunEkle() {
-            if (sepet.length === 0) {
+        // Ürün Modalı (Lightbox) Fonksiyonları
+        function openProductModal(productId) {
+            currentModalProductId = productId;
+            currentImageIndex = 0;
+            updateModalContent();
+            
+            const modal = document.getElementById('productModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeProductModal(e) {
+            if (e) e.stopPropagation();
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentModalProductId = null;
+        }
+
+        function updateModalContent() {
+            if(!currentModalProductId) return;
+            const p = products[currentModalProductId];
+            
+            document.getElementById('modalTitle').innerText = p.name[currentLang];
+            document.getElementById('modalDesc').innerText = p.desc[currentLang];
+            
+            const oldPriceEl = document.getElementById('modalOldPrice');
+            if (p.oldPrice) {
+                oldPriceEl.innerText = p.oldPrice;
+                oldPriceEl.style.display = 'inline';
+            } else {
+                oldPriceEl.style.display = 'none';
+            }
+            
+            document.getElementById('modalPrice').innerText = p.priceStr;
+            
+            let btnText = "В корзину";
+            if (currentLang === 'en') btnText = "Add to Cart";
+            if (currentLang === 'kz') btnText = "Себетке қосу";
+            document.getElementById('modalAddBtnText').innerText = btnText;
+
+            document.getElementById('modalAddToCart').onclick = function() {
+                sepeteUrunEkle(currentModalProductId);
+                closeProductModal();
+            };
+
+            const prevBtn = document.querySelector('.slider-btn.prev');
+            const nextBtn = document.querySelector('.slider-btn.next');
+
+            if (p.images.length > 1) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+
+            updateModalImage();
+        }
+
+        function changeSlide(direction) {
+            const p = products[currentModalProductId];
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = p.images.length - 1;
+            } else if (currentImageIndex >= p.images.length) {
+                currentImageIndex = 0;
+            }
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            const p = products[currentModalProductId];
+            document.getElementById('modalMainImage').src = p.images[currentImageIndex];
+        }
+
+        function sepeteUrunEkle(productId) {
+            const p = products[productId];
+            let sepettekiUrun = sepet.find(item => item.id === productId);
+
+            if (sepettekiUrun) {
+                sepettekiUrun.adet += 1;
+            } else {
                 const urun = {
-                    id: 1,
-                    isim: "Спортивная бутылка Shygo",
-                    fiyatSayi: 4290,
-                    fiyatStr: "4.290 ₸",
-                    img: "gercek-foto.jpg",
+                    id: p.id,
+                    isim: p.name[currentLang],
+                    fiyatSayi: p.priceSayi,
+                    fiyatStr: p.priceStr,
+                    img: p.images[0],
                     adet: 1
                 };
                 sepet.push(urun);
-            } else {
-                sepet[0].adet += 1;
             }
             sessionStorage.setItem(oturumSepetAnahtari, JSON.stringify(sepet));
             sepetiGuncelleUI();
-            toggleCart();
+            
+            if (!document.getElementById('cartDrawer').classList.contains('open')) {
+                toggleCart();
+            }
         }
 
         function miktarDegistir(index, miktar) {
@@ -473,15 +630,14 @@
             sepetiGuncelleUI();
         }
 
-        // YENİ İNDİRİM UYGULAMA FONKSİYONU
         function uygulaIndirim() {
             const input = document.getElementById('discountInput').value.trim().toUpperCase();
             const msgEl = document.getElementById('discountMessage');
             
             if (input === 'SHY05') {
-                indirimYuzdesi = 0.05; // %5 indirim
+                indirimYuzdesi = 0.05; 
                 msgEl.style.display = 'block';
-                msgEl.style.color = '#28a745'; // Yeşil renk
+                msgEl.style.color = '#28a745'; 
                 
                 let basariMsj = "Скидка 5% применена!";
                 if(currentLang === 'en') basariMsj = "5% discount applied!";
@@ -490,7 +646,7 @@
             } else {
                 indirimYuzdesi = 0;
                 msgEl.style.display = 'block';
-                msgEl.style.color = '#dc3545'; // Kırmızı renk
+                msgEl.style.color = '#dc3545'; 
                 
                 let hataMsj = "Неверный код!";
                 if(currentLang === 'en') hataMsj = "Invalid code!";
@@ -513,7 +669,6 @@
                 toplamFiyat += item.fiyatSayi * item.adet;
             });
 
-            // İNDİRİM HESAPLAMA
             let indirimMiktari = toplamFiyat * indirimYuzdesi;
             let indirimliToplamFiyat = toplamFiyat - indirimMiktari;
 
@@ -532,11 +687,12 @@
                     let html = '';
                     sepet.forEach((item, index) => {
                         let urunToplam = item.fiyatSayi * item.adet;
+                        let guncelIsim = products[item.id] ? products[item.id].name[currentLang] : item.isim;
                         html += `
                             <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 15px; position: relative; border-bottom: 1px solid #eee; padding-bottom: 12px;">
                                 <img src="${item.img}" alt="Shygo" class="cart-item-img" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 12px;">
                                 <div class="cart-item-details" style="flex-grow: 1;">
-                                    <h4 style="font-size: 14px; margin-bottom: 4px;">${item.isim}</h4>
+                                    <h4 style="font-size: 14px; margin-bottom: 4px;">${guncelIsim}</h4>
                                     <span class="cart-item-price" style="font-weight: 600; color: #ff5722; display: block; margin-bottom: 6px;">${urunToplam.toLocaleString()} ₸</span>
                                     
                                     <div style="display: flex; align-items: center; gap: 8px;">
@@ -553,7 +709,6 @@
                 }
             }
 
-            // İNDİRİMLİ FİYATIN ARAYÜZE YAZILMASI
             if (totalPriceEl) {
                 if (indirimYuzdesi > 0 && toplamFiyat > 0) {
                     totalPriceEl.innerHTML = `<span style="text-decoration:line-through; font-size:14px; color:#999; margin-right:8px;">${toplamFiyat.toLocaleString()} ₸</span>${indirimliToplamFiyat.toLocaleString()} ₸`;
@@ -707,11 +862,11 @@
             let toplamFiyat = 0;
             let urunDetaylari = "";
             sepet.forEach(item => {
+                let guncelIsim = products[item.id] ? products[item.id].name[currentLang] : item.isim;
                 toplamFiyat += item.fiyatSayi * item.adet;
-                urunDetaylari += `${item.isim} (Adet: ${item.adet}), `;
+                urunDetaylari += `${guncelIsim} (Adet: ${item.adet}), `;
             });
 
-            // SİPARİŞ MESAJINA İNDİRİM BİLGİSİNİ EKLEME
             let indirimMiktari = toplamFiyat * indirimYuzdesi;
             let indirimliToplamFiyat = toplamFiyat - indirimMiktari;
             
@@ -777,12 +932,11 @@
                 modalDescText = `Kaspi парақшасында тапсырыстың дәл сомасын енгізіңіз (жеткізуді қоса алғанда): <br><br><span style="display: inline-block; padding: 10px 18px; background: #fff3ed; border: 2px dashed #ff5722; border-radius: 12px; font-size: 22px; font-weight: 800; color: #ff5722; box-shadow: 0 4px 15px rgba(255,87,34,0.15);">${hesaplananToplamFiyat.toLocaleString()} ₸</span>`;
             }
             
-            document.getElementById('modalDesc').innerHTML = modalDescText;
+            document.getElementById('modalDescPayment').innerHTML = modalDescText;
 
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
             
-            // İNDİRİM ALANLARINI SIFIRLAMA
             indirimYuzdesi = 0;
             if(document.getElementById('discountInput')) document.getElementById('discountInput').value = '';
             if(document.getElementById('discountMessage')) document.getElementById('discountMessage').style.display = 'none';
@@ -797,7 +951,7 @@
             if (currentLang === 'en') cartTitle = "Your Cart";
             if (currentLang === 'kz') cartTitle = "Сіздің себетіңіз";
             document.getElementById('drawer-title').innerText = cartTitle;
-            document.getElementById('backToCartIcon').style.display = 'none';
+            document.getElementById('backToBadgeIcon').style.display = 'none';
             toggleCart();
 
             const modal = document.getElementById('paymentModal');
@@ -823,7 +977,6 @@
             sepet = [];
             sessionStorage.removeItem(oturumSepetAnahtari);
             
-            // İNDİRİM ALANLARINI SIFIRLAMA
             indirimYuzdesi = 0;
             if(document.getElementById('discountInput')) document.getElementById('discountInput').value = '';
             if(document.getElementById('discountMessage')) document.getElementById('discountMessage').style.display = 'none';
@@ -838,7 +991,7 @@
             if (currentLang === 'en') cartTitle = "Your Cart";
             if (currentLang === 'kz') cartTitle = "Сіздің себетіңіз";
             document.getElementById('drawer-title').innerText = cartTitle;
-            document.getElementById('backToCartIcon').style.display = 'none';
+            document.getElementById('backToBadgeIcon').style.display = 'none';
             toggleCart();
         }
 
