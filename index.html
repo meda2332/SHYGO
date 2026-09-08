@@ -22,8 +22,8 @@
     <!-- Üst Turuncu Duyuru Bandı -->
     <div class="top-announcement-bar">
         <div class="announcement-track">
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
-            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON ALL PRODUCTS • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: БАРЛЫҚ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ВСЕ ТОВАРЫ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON OUR BEST SELLER • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: ХИТ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
+            <span data-ru="СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА" data-en="SPECIAL OFFER: 26% OFF ON OUR BEST SELLER • FREE DELIVERY TO BRANCH" data-kz="АРНАЙЫ ҰСЫНЫС: ХИТ ӨНІМГЕ 26% ЖЕҢІЛДІК • БӨЛІМШЕГЕ ТЕГІН ЖЕТКІЗУ">СПЕЦПРЕДЛОЖЕНИЕ: СКИДКА 26% НА ХИТ ПРОДАЖ • БЕСПЛАТНАЯ ДОСТАВКА ДО ФИЛИАЛА</span>
         </div>
     </div>
 
@@ -247,6 +247,48 @@
         </div>
     </div>
 
+    <!-- ÜRÜN DETAY MODALI (Galeri + Oklar + Açıklama) -->
+    <div class="product-modal" id="productModal">
+        <div class="pm-overlay" onclick="urunDetayKapat()" ontouchend="urunDetayKapat(); event.preventDefault();"></div>
+        <div class="pm-box">
+            <i class="fa-solid fa-xmark pm-close" onclick="urunDetayKapat()" ontouchend="urunDetayKapat(); event.preventDefault();"></i>
+
+            <!-- Sol taraf: Galeri -->
+            <div class="pm-gallery-wrap">
+                <div class="pm-gallery" id="pmGallery">
+                    <div class="pm-media" id="pmMedia"></div>
+                    <button class="pm-arrow pm-prev" onclick="medyaDegistir(-1)" ontouchend="medyaDegistir(-1); event.preventDefault();" aria-label="Prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="pm-arrow pm-next" onclick="medyaDegistir(1)" ontouchend="medyaDegistir(1); event.preventDefault();" aria-label="Next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div class="pm-counter" id="pmCounter">1 / 1</div>
+                </div>
+                <div class="pm-thumbs" id="pmThumbs"></div>
+            </div>
+
+            <!-- Sağ taraf: Bilgi -->
+            <div class="pm-info">
+                <span class="pm-tag" id="pmTag"></span>
+                <h2 id="pmTitle"></h2>
+                <p class="pm-desc" id="pmDesc"></p>
+                <ul class="pm-features" id="pmFeatures"></ul>
+
+                <div class="pm-price-block">
+                    <div class="pm-price-row">
+                        <span class="pm-old-price" id="pmOldPrice" style="display:none;"></span>
+                        <span class="pm-price" id="pmPrice"></span>
+                    </div>
+                    <button class="pm-add-btn" onclick="modaldanSepeteEkle()" ontouchend="modaldanSepeteEkle(); event.preventDefault();">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="pmAddText">В корзину</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Bölümü -->
     <section class="hero" id="home">
         <div class="hero-content">
@@ -265,10 +307,12 @@
         <h2 class="section-title" data-ru="Наши товары" data-en="Our Products" data-kz="Біздің өнімдер">Наши товары</h2>
         
         <div class="product-grid">
-            <div class="product-card">
-                <div class="badge-discount" data-ru="СПЕЦСЕРИЯ" data-en="SPECIAL" data-kz="АРНАЙЫ СЕРИЯ">СПЕЦСЕРИЯ</div>
+
+            <!-- ÜRÜN 1: Shygo Spray Bottle (BEST SELLER) -->
+            <div class="product-card" onclick="urunDetayAc('spray')">
+                <div class="badge-best" data-ru="ХИТ ПРОДАЖ" data-en="BEST SELLER" data-kz="ЕҢ КӨП САТЫЛҒАН">ХИТ ПРОДАЖ</div>
                 <div class="img-container">
-                    <img src="gercek-foto.jpg" alt="Shygo Fıs Fıs Suluğu" class="product-img">
+                    <img src="gercek-foto.jpg" alt="Shygo Spray Bottle" class="product-img">
                 </div>
                 <div class="product-info">
                     <h3 data-ru="Спортивная бутылка Shygo Spray" data-en="Shygo Spray Sport Bottle" data-kz="Shygo Бүріккіш Спорттық Бөтелкесі">Спортивная бутылка Shygo Spray</h3>
@@ -278,10 +322,47 @@
                             <span class="old-price">5.790 ₸</span>
                             <span class="price">4.290 ₸</span>
                         </div>
-                        <button class="add-to-cart-btn" onclick="sepeteUrunEkle()" ontouchend="sepeteUrunEkle(); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle('spray');" ontouchend="event.stopPropagation(); sepeteUrunEkle('spray'); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
                     </div>
                 </div>
             </div>
+
+            <!-- ÜRÜN 2: Shygo Thermo Tumbler (NEW) -->
+            <div class="product-card" onclick="urunDetayAc('tumbler')">
+                <div class="badge-new" data-ru="НОВИНКА" data-en="NEW" data-kz="ЖАҢА">НОВИНКА</div>
+                <div class="img-container">
+                    <img src="shygo-stanley.jpg" alt="Shygo Thermo Tumbler" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 data-ru="Термокружка Shygo Thermo Tumbler" data-en="Shygo Thermo Tumbler" data-kz="Shygo Термо Кружкасы">Термокружка Shygo Thermo Tumbler</h3>
+                    <p class="product-desc" data-ru="Нержавеющая сталь 304, двойные стенки, удобная ручка и многоразовая трубочка." data-en="304 stainless steel, double walls, comfortable handle and reusable straw." data-kz="304 тот баспайтын болат, қос қабырға, ыңғайлы тұтқа және түтік.">Нержавеющая сталь 304, двойные стенки, удобная ручка и многоразовая трубочка.</p>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="price price-dark">5.790 ₸</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle('tumbler');" ontouchend="event.stopPropagation(); sepeteUrunEkle('tumbler'); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ÜRÜN 3: Shygo Shaker (NEW) -->
+            <div class="product-card" onclick="urunDetayAc('shaker')">
+                <div class="badge-new" data-ru="НОВИНКА" data-en="NEW" data-kz="ЖАҢА">НОВИНКА</div>
+                <div class="img-container">
+                    <img src="shygo-shaker.jpg" alt="Shygo Shaker" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h3 data-ru="Shygo Шейкер" data-en="Shygo Shaker" data-kz="Shygo Шейкері">Shygo Шейкер</h3>
+                    <p class="product-desc" data-ru="Шейкер с пластиковым венчиком, мерной шкалой и герметичной крышкой." data-en="Shaker with a plastic mixing ball, measurement scale and leak-proof lid." data-kz="Пластик араластырғыш шары, өлшеу шкаласы және тығыз қақпағы бар шейкер.">Шейкер с пластиковым венчиком, мерной шкалой и герметичной крышкой.</p>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="price price-dark">4.590 ₸</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); sepeteUrunEkle('shaker');" ontouchend="event.stopPropagation(); sepeteUrunEkle('shaker'); event.preventDefault();" data-ru="В корзину" data-en="Add to Cart" data-kz="Себетке қосу">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -319,6 +400,308 @@
         let indirimYuzdesi = 0; // Yeni İndirim Değişkeni
 
         const oturumSepetAnahtari = 'shygo_sepet_' + window.location.hostname;
+
+        // ==========================================================
+        //  ÜRÜN VERİLERİ (3 DİL DESTEKLİ)
+        // ==========================================================
+        const urunler = {
+            spray: {
+                id: 1,
+                rozet: "best",
+                rozetYazi: { ru: "ХИТ ПРОДАЖ", en: "BEST SELLER", kz: "ЕҢ КӨП САТЫЛҒАН" },
+                isim: {
+                    ru: "Спортивная бутылка Shygo Spray",
+                    en: "Shygo Spray Sport Bottle",
+                    kz: "Shygo Бүріккіш Спорттық Бөтелкесі"
+                },
+                fiyatSayi: 4290,
+                fiyatStr: "4.290 ₸",
+                eskiFiyat: "5.790 ₸",
+                img: "gercek-foto.jpg",
+                medya: [
+                    { tip: "foto", src: "gercek-foto.jpg" }
+                ],
+                aciklama: {
+                    ru: "Оригинальная оранжевая бутылка Shygo со встроенным механизмом спрея. Один клик — и лицо мгновенно освежается на тренировке, в жару или на учёбе.",
+                    en: "The original orange Shygo bottle with a built-in spray mechanism. One press and your face is instantly refreshed during training, on hot days or at school.",
+                    kz: "Ішіне орнатылған бүріккіш механизмі бар түпнұсқа қызғылт сары Shygo бөтелкесі. Бір рет басу жеткілікті — жаттығуда, ыстықта немесе оқуда бетіңіз лезде сергиді."
+                },
+                ozellikler: {
+                    ru: [
+                        "Механизм спрея для мгновенного охлаждения",
+                        "Матовая черная крышка, прозрачный оранжевый корпус",
+                        "Герметичная конструкция — не протекает в сумке",
+                        "Лёгкий корпус, помещается в рюкзак и в подстаканник",
+                        "Материал без BPA, безопасен для здоровья"
+                    ],
+                    en: [
+                        "Spray mechanism for instant cooling",
+                        "Matte black lid, transparent orange body",
+                        "Leak-proof design — safe inside your bag",
+                        "Lightweight, fits backpacks and cup holders",
+                        "BPA-free, food-safe material"
+                    ],
+                    kz: [
+                        "Лезде салқындатуға арналған бүріккіш механизмі",
+                        "Матты қара қақпақ, мөлдір қызғылт сары корпус",
+                        "Тығыз құрылым — сөмкеде ағып кетпейді",
+                        "Жеңіл корпус, рюкзак пен ұстағышқа сыяды",
+                        "BPA-сыз, денсаулыққа қауіпсіз материал"
+                    ]
+                }
+            },
+            tumbler: {
+                id: 2,
+                rozet: "new",
+                rozetYazi: { ru: "НОВИНКА", en: "NEW", kz: "ЖАҢА" },
+                isim: {
+                    ru: "Термокружка Shygo Thermo Tumbler",
+                    en: "Shygo Thermo Tumbler",
+                    kz: "Shygo Термо Кружкасы"
+                },
+                fiyatSayi: 5790,
+                fiyatStr: "5.790 ₸",
+                eskiFiyat: null,
+                fiyatSiyah: true,
+                img: "shygo-stanley.jpg",
+                medya: [
+                    { tip: "foto", src: "shygo-stanley.jpg" },
+                    { tip: "foto", src: "staney-yakindan.jpg" },
+                    { tip: "foto", src: "stanley-h-y.jpg" },
+                    { tip: "foto", src: "stanley-h.jpg" },
+                    { tip: "foto", src: "stanley-1.jpg" },
+                    { tip: "foto", src: "stanley-2.jpg" },
+                    { tip: "foto", src: "stanley-3.jpg" }
+                ],
+                aciklama: {
+                    ru: "Термокружка из нержавеющей стали 304 с двойными стенками, удобной ручкой и многоразовой трубочкой. Прочный корпус не впитывает запахи и не оставляет металлического привкуса.",
+                    en: "A double-wall tumbler made of 304 stainless steel, with a comfortable handle and a reusable straw. The durable body does not absorb odours and leaves no metallic aftertaste.",
+                    kz: "Қос қабырғалы 304 тот баспайтын болаттан жасалған, ыңғайлы тұтқасы және көп рет қолданылатын түтігі бар термокружка. Берік корпус иісті сіңірмейді және металл дәмін қалдырмайды."
+                },
+                ozellikler: {
+                    ru: [
+                        "Корпус из нержавеющей стали 304",
+                        "Двойные стенки",
+                        "Удобная ручка и многоразовая трубочка",
+                        "Крышка с задвижкой — не проливается",
+                        "Узкое дно: помещается в подстаканник автомобиля"
+                    ],
+                    en: [
+                        "304 stainless steel body",
+                        "Double-wall construction",
+                        "Comfortable handle and reusable straw",
+                        "Slider lid — no spills on the go",
+                        "Tapered base fits standard car cup holders"
+                    ],
+                    kz: [
+                        "304 тот баспайтын болаттан жасалған корпус",
+                        "Қос қабырғалы құрылым",
+                        "Ыңғайлы тұтқа және көп рет қолданылатын түтік",
+                        "Жылжымалы қақпақ — төгілмейді",
+                        "Тар түбі автокөлік ұстағышына сыяды"
+                    ]
+                }
+            },
+            shaker: {
+                id: 3,
+                rozet: "new",
+                rozetYazi: { ru: "НОВИНКА", en: "NEW", kz: "ЖАҢА" },
+                isim: {
+                    ru: "Shygo Шейкер",
+                    en: "Shygo Shaker",
+                    kz: "Shygo Шейкері"
+                },
+                fiyatSayi: 4590,
+                fiyatStr: "4.590 ₸",
+                eskiFiyat: null,
+                fiyatSiyah: true,
+                img: "shygo-shaker.jpg",
+                medya: [
+                    { tip: "foto", src: "shygo-shaker.jpg" },
+                    { tip: "foto", src: "shaker-yakin.jpg" },
+                    { tip: "foto", src: "shaker-alti.jpg" },
+                    { tip: "foto", src: "shaker-ml.jpg" }
+                ],
+                aciklama: {
+                    ru: "Спортивный шейкер Shygo с пластиковым венчиком-шариком. Протеин, BCAA или изотоник размешиваются без комков за пару секунд, а мерная шкала помогает точно отмерить порцию.",
+                    en: "The Shygo sports shaker with a plastic mixing ball. Protein, BCAA or isotonic drinks mix lump-free in seconds, and the measurement scale helps you get the portion exactly right.",
+                    kz: "Пластик араластырғыш шары бар Shygo спорттық шейкері. Протеин, BCAA немесе изотоник бірнеше секундта түйіршіксіз араласады, ал өлшеу шкаласы порцияны дәл өлшеуге көмектеседі."
+                },
+                ozellikler: {
+                    ru: [
+                        "Пластиковый венчик — коктейль без комков",
+                        "Мерная шкала на корпусе (мл)",
+                        "Герметичная крышка — не протекает в спортивной сумке",
+                        "Материал без BPA, не впитывает запахи",
+                        "Устойчивое дно и удобный захват одной рукой"
+                    ],
+                    en: [
+                        "Plastic mixing ball for lump-free shakes",
+                        "Measurement scale printed on the body (ml)",
+                        "Leak-proof lid — safe inside your gym bag",
+                        "BPA-free material that does not hold odours",
+                        "Stable base and easy one-hand grip"
+                    ],
+                    kz: [
+                        "Пластик шар — түйіршіксіз коктейль",
+                        "Корпустағы өлшеу шкаласы (мл)",
+                        "Тығыз қақпақ — спорт сөмкесінде ағып кетпейді",
+                        "BPA-сыз материал, иісті сіңірмейді",
+                        "Тұрақты түп және бір қолмен ыңғайлы ұстау"
+                    ]
+                }
+            }
+        };
+
+        let acikUrunKey = null;   // Modalda açık olan ürün
+        let medyaIndex = 0;       // Galeride gösterilen medya sırası
+
+        // Ürün detay modalını aç
+        function urunDetayAc(key) {
+            acikUrunKey = key;
+            medyaIndex = 0;
+            urunDetayCiz();
+            const modal = document.getElementById('productModal');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Modalı kapat
+        function urunDetayKapat() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            document.getElementById('pmMedia').innerHTML = ''; // video sesini durdurur
+            acikUrunKey = null;
+        }
+
+        // Modal içeriğini seçili dile göre çiz
+        function urunDetayCiz() {
+            if (!acikUrunKey) return;
+            const u = urunler[acikUrunKey];
+
+            // Rozet
+            const tagEl = document.getElementById('pmTag');
+            tagEl.className = 'pm-tag ' + u.rozet;
+            tagEl.innerText = u.rozetYazi[currentLang];
+
+            // Başlık ve açıklama
+            document.getElementById('pmTitle').innerText = u.isim[currentLang];
+            document.getElementById('pmDesc').innerText = u.aciklama[currentLang];
+
+            // Özellik listesi
+            let ozHtml = '';
+            u.ozellikler[currentLang].forEach(oz => {
+                ozHtml += `<li><i class="fa-solid fa-check"></i><span>${oz}</span></li>`;
+            });
+            document.getElementById('pmFeatures').innerHTML = ozHtml;
+
+            // Fiyat
+            const oldEl = document.getElementById('pmOldPrice');
+            if (u.eskiFiyat) {
+                oldEl.style.display = 'inline-block';
+                oldEl.innerText = u.eskiFiyat;
+            } else {
+                oldEl.style.display = 'none';
+            }
+            const priceEl = document.getElementById('pmPrice');
+            priceEl.innerText = u.fiyatStr;
+            priceEl.style.color = u.fiyatSiyah ? '#111' : '#ff5722';
+
+            // Sepete ekle buton yazısı
+            let btnText = "В корзину";
+            if (currentLang === 'en') btnText = "Add to Cart";
+            if (currentLang === 'kz') btnText = "Себетке қосу";
+            document.getElementById('pmAddText').innerText = btnText;
+
+            medyaCiz();
+        }
+
+        // Galerideki aktif medyayı (foto / video) çiz
+        function medyaCiz() {
+            if (!acikUrunKey) return;
+            const u = urunler[acikUrunKey];
+            const medya = u.medya[medyaIndex];
+            const mediaEl = document.getElementById('pmMedia');
+
+            if (medya.tip === 'video') {
+                mediaEl.innerHTML = `
+                    <video src="${encodeURI(medya.src)}" poster="${medya.kapak || ''}" controls autoplay muted loop playsinline></video>
+                `;
+            } else {
+                mediaEl.innerHTML = `<img src="${encodeURI(medya.src)}" alt="${u.isim[currentLang]}">`;
+            }
+
+            // Sayaç
+            document.getElementById('pmCounter').innerText = (medyaIndex + 1) + ' / ' + u.medya.length;
+
+            // Ok butonları: tek medya varsa gizle
+            const okGoster = u.medya.length > 1 ? 'flex' : 'none';
+            document.querySelector('.pm-prev').style.display = okGoster;
+            document.querySelector('.pm-next').style.display = okGoster;
+
+            // Küçük önizlemeler
+            let thumbHtml = '';
+            u.medya.forEach((m, i) => {
+                const aktif = (i === medyaIndex) ? 'active' : '';
+                const kapak = (m.tip === 'video') ? (m.kapak || '') : m.src;
+                thumbHtml += `
+                    <div class="pm-thumb ${aktif}" onclick="medyaSec(${i})" ontouchend="medyaSec(${i}); event.preventDefault();">
+                        <img src="${encodeURI(kapak)}" alt="thumb">
+                        ${m.tip === 'video' ? '<div class="thumb-video-icon"><i class="fa-solid fa-play"></i></div>' : ''}
+                    </div>
+                `;
+            });
+            const thumbsEl = document.getElementById('pmThumbs');
+            thumbsEl.innerHTML = thumbHtml;
+            thumbsEl.style.display = (u.medya.length > 1) ? 'flex' : 'none';
+        }
+
+        // Sağ / sol ok ile medya değiştir (başa-sona döner)
+        function medyaDegistir(yon) {
+            if (!acikUrunKey) return;
+            const toplam = urunler[acikUrunKey].medya.length;
+            medyaIndex = (medyaIndex + yon + toplam) % toplam;
+            medyaCiz();
+        }
+
+        // Küçük önizlemeye tıklayınca
+        function medyaSec(i) {
+            medyaIndex = i;
+            medyaCiz();
+        }
+
+        // Modaldaki "Sepete Ekle"
+        function modaldanSepeteEkle() {
+            if (!acikUrunKey) return;
+            const key = acikUrunKey;
+            urunDetayKapat();
+            sepeteUrunEkle(key);
+        }
+
+        // Klavye ile gezinme (ok tuşları + ESC)
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('productModal').classList.contains('open')) return;
+            if (e.key === 'ArrowRight') medyaDegistir(1);
+            if (e.key === 'ArrowLeft') medyaDegistir(-1);
+            if (e.key === 'Escape') urunDetayKapat();
+        });
+
+        // Mobilde parmakla kaydırarak fotoğraf değiştirme
+        let dokunusBaslangic = 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            const gal = document.getElementById('pmGallery');
+            if (!gal) return;
+            gal.addEventListener('touchstart', function(e) {
+                dokunusBaslangic = e.changedTouches[0].clientX;
+            }, { passive: true });
+            gal.addEventListener('touchend', function(e) {
+                const fark = e.changedTouches[0].clientX - dokunusBaslangic;
+                if (Math.abs(fark) > 50) {
+                    medyaDegistir(fark < 0 ? 1 : -1);
+                }
+            }, { passive: true });
+        });
 
         const janapostData = {
             "Астана": [
@@ -426,6 +809,11 @@
             });
 
             sepetiGuncelleUI();
+
+            // Ürün detay modalı açıksa içeriğini yeni dile göre yenile
+            if (acikUrunKey) {
+                urunDetayCiz();
+            }
             
             if(document.getElementById('commonCity').value) {
                 updateJanapostBranches();
@@ -439,23 +827,42 @@
             overlay.classList.toggle('open');
         }
 
-        function sepeteUrunEkle() {
-            if (sepet.length === 0) {
-                const urun = {
-                    id: 1,
-                    isim: "Спортивная бутылка Shygo",
-                    fiyatSayi: 4290,
-                    fiyatStr: "4.290 ₸",
-                    img: "gercek-foto.jpg",
-                    adet: 1
-                };
-                sepet.push(urun);
+        // Sepete ürün ekle (artık 3 ürün de destekleniyor)
+        function sepeteUrunEkle(key) {
+            if (!key) key = 'spray';
+            const u = urunler[key];
+            if (!u) return;
+
+            const mevcut = sepet.findIndex(item => item.key === key);
+            if (mevcut > -1) {
+                sepet[mevcut].adet += 1;
             } else {
-                sepet[0].adet += 1;
+                sepet.push({
+                    key: key,
+                    id: u.id,
+                    isim: u.isim.ru,       // E-posta / sipariş kaydı için sabit isim
+                    isimler: u.isim,       // Arayüzde dile göre gösterim
+                    fiyatSayi: u.fiyatSayi,
+                    fiyatStr: u.fiyatStr,
+                    img: u.img,
+                    adet: 1
+                });
             }
+
             sessionStorage.setItem(oturumSepetAnahtari, JSON.stringify(sepet));
             sepetiGuncelleUI();
-            toggleCart();
+
+            // Sepet paneli kapalıysa aç
+            if (!document.getElementById('cartDrawer').classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        // Sepetteki ürünün ismini aktif dile göre döndür (eski kayıtlarla uyumlu)
+        function sepetUrunIsmi(item) {
+            if (item.isimler && item.isimler[currentLang]) return item.isimler[currentLang];
+            if (item.key && urunler[item.key]) return urunler[item.key].isim[currentLang];
+            return item.isim;
         }
 
         function miktarDegistir(index, miktar) {
@@ -536,7 +943,7 @@
                             <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 15px; position: relative; border-bottom: 1px solid #eee; padding-bottom: 12px;">
                                 <img src="${item.img}" alt="Shygo" class="cart-item-img" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 12px;">
                                 <div class="cart-item-details" style="flex-grow: 1;">
-                                    <h4 style="font-size: 14px; margin-bottom: 4px;">${item.isim}</h4>
+                                    <h4 style="font-size: 14px; margin-bottom: 4px;">${sepetUrunIsmi(item)}</h4>
                                     <span class="cart-item-price" style="font-weight: 600; color: #ff5722; display: block; margin-bottom: 6px;">${urunToplam.toLocaleString()} ₸</span>
                                     
                                     <div style="display: flex; align-items: center; gap: 8px;">
