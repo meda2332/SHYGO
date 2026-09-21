@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHYGO | Спрей-бутылки и спортивные аксессуары</title>
     
+    <!-- SHYGO Logo ve Favicon Ayarları -->
+    <meta name="application-name" content="SHYGO">
+    <meta name="apple-mobile-web-app-title" content="SHYGO">
+    <link rel="icon" type="image/svg+xml" href="https://shygo.net/logo.svg">
+    <link rel="apple-touch-icon" href="https://shygo.net/logo.svg">
+
     <!-- SEO Meta Etiketleri -->
     <meta name="description" content="Официальный сайт SHYGO в Казахстане. Спортивные спрей-бутылки для воды, термокружки и шейкеры. Доставка по Алматы и всему Казахстану.">
     <meta name="keywords" content="SHYGO, shygo.net, спрей бутылка, спортивная бутылка для воды, spray bottle, термокружка, шейкер, Алматы, Казахстан">
@@ -39,7 +45,7 @@
           "url": "https://shygo.net/",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://shygo.net/gercek-foto.jpg"
+            "url": "https://shygo.net/logo.svg"
           },
           "description": "Официальный бренд спортивных спрей-бутылок и аксессуаров SHYGO в Казахстане.",
           "sameAs": [
@@ -521,7 +527,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Fonksiyonları -->
+    <!-- JavaScript Fonksiyonлары -->
     <script>
         let currentLang = 'ru';
         let sepet = [];
@@ -1259,7 +1265,7 @@
 
             emailjs.send('service_6xt8u4j', 'template_kovmr99', templateParams)
                 .then(function(response) {
-                    console.log('E-posta başarıyla gönderildi!', response.status, response.text);
+                    console.log('E-posta başarıyla отправлено!', response.status, response.text);
                 }, function(error) {
                     console.log('E-posta gönderilemedi...', error);
                 });
