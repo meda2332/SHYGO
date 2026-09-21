@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <!-- Arka plan şeffaftır, Google ve tarayıcılar için turuncu SHYGO tipografisi -->
-  <text x="50%" y="53%" dominant-baseline="central" text-anchor="middle" font-family="'Outfit', 'Inter', 'Arial Black', sans-serif" font-size="115" font-weight="900" fill="#FF5500" letter-spacing="4">SHYGO</text>
+  <!-- Turuncu Yuvarlatılmış Arka Plan -->
+  <rect width="512" height="512" rx="120" fill="#FF5500"/>
+  <!-- Beyaz Kalın SHYGO Yazısı -->
+  <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="'Arial Black', 'Impact', sans-serif" font-weight="900" font-size="110" letter-spacing="4">SHYGO</text>
 </svg>
