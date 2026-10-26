@@ -385,6 +385,9 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     border: 1px solid rgba(0,0,0,0.04);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -428,6 +431,9 @@ body {
 
 .product-info {
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .product-info h3 {
@@ -449,6 +455,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 }
 
 .price-container {
@@ -557,7 +564,6 @@ body {
     .hero p {
         font-size: 15px;
     }
-    /* --- MOBİLDE ÜRÜNLER ALT ALTA DEĞİL, YAN YANA --- */
     .products-section {
         margin: 50px auto;
         padding: 0;
@@ -609,25 +615,6 @@ body {
         padding: 9px 14px;
         font-size: 12px;
     }
-
-    /* İSTERSEN: 3 ürünün de kaydırmadan aynı anda ekrana sığması için
-       aşağıdaki bloğun yorumunu kaldır (yazılar çok küçülür).
-    .product-grid {
-        overflow-x: visible;
-        gap: 8px;
-        padding: 6px 12px 22px;
-    }
-    .product-card { flex: 1 1 0; max-width: none; }
-    .img-container { height: 130px; }
-    .product-info { padding: 10px 8px; }
-    .product-info h3 { font-size: 11px; }
-    .product-desc { display: none; }
-    .price-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .price { font-size: 14px; }
-    .old-price { font-size: 11px; }
-    .add-to-cart-btn { width: 100%; padding: 8px 4px; font-size: 10px; }
-    .badge-new, .badge-best { font-size: 8px; padding: 3px 6px; top: 8px; left: 8px; }
-    */
     .cart-drawer {
         width: 100% !important;
         max-width: 100% !important;
@@ -657,16 +644,8 @@ body {
         height: 230px;
     }
 }
-/* =========================================================
-   YENİ EKLENENLER — ÜRÜN ROZETLERİ, DETAY MODALI, GALERİ
-   ========================================================= */
 
-/* Ürün kartı tıklanabilir hale geldi */
-.product-card {
-    cursor: pointer;
-}
-
-/* "NEW" rozeti (turuncu) */
+/* ÜRÜN ROZETLERİ, DETAY MODALI, GALERİ */
 .badge-new {
     position: absolute;
     top: 15px;
@@ -682,7 +661,6 @@ body {
     box-shadow: 0 4px 12px rgba(255, 85, 0, 0.35);
 }
 
-/* "BEST SELLER" rozeti (siyah) */
 .badge-best {
     position: absolute;
     top: 15px;
@@ -697,7 +675,6 @@ body {
     z-index: 10;
 }
 
-/* Siyah fiyat gösterimi (Thermo Tumbler ve Shaker) */
 .price.price-dark {
     color: #111;
 }
@@ -776,7 +753,6 @@ body {
     color: #fff;
 }
 
-/* Galeri alanı */
 .pm-gallery-wrap {
     background: #f4f4f4;
     display: flex;
@@ -823,7 +799,6 @@ body {
     to   { opacity: 1; transform: scale(1); }
 }
 
-/* Sağ / Sol oklar */
 .pm-arrow {
     position: absolute;
     top: 50%;
@@ -868,7 +843,6 @@ body {
     z-index: 20;
 }
 
-/* Küçük önizleme (thumbnail) şeridi */
 .pm-thumbs {
     display: flex;
     gap: 8px;
@@ -915,7 +889,6 @@ body {
     font-size: 14px;
 }
 
-/* Sağ bilgi paneli */
 .pm-info {
     padding: 40px 32px 28px;
     overflow-y: auto;
@@ -1032,7 +1005,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* --- MODAL MOBİL UYUM --- */
 @media screen and (max-width: 900px) {
     .product-modal {
         padding: 0;
